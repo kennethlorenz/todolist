@@ -1,0 +1,46 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  /* sets base font size to 10px */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  grid-template: 7rem 5fr 7rem/ 30rem 2fr;
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "footer footer";
+}
+
+header {
+  background-color: red;
+  grid-area: header;
+}
+
+.sidebar {
+  background-color: blue;
+  grid-area: nav;
+}
+
+.main {
+  background-color: black;
+  grid-area: main;
+}
+
+footer {
+  background-color: aqua;
+  grid-area: footer;
+}
