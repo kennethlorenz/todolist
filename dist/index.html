@@ -4,13 +4,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <title>To Do App</title>
   </head>
   <body>
-    <header><p>TODOO</p></header>
-    <div class="sidebar">SIDE BAR</div>
-    <div class="main">MAIN</div>
-    <footer>footer</footer>
+    <header>
+      <div class="logo"><i class="fa-solid fa-check-double"></i></div>
+      <p>TODOO</p>
+    </header>
+    <div class="sidebar">
+      <h2>Projects</h2>
+      <ul class="projects">
+        <li class="project selected">
+          <div class="project-logo">
+            <i class="fa-solid fa-list"></i>
+          </div>
+          <p class="project-name">Project 1</p>
+        </li>
+        <li class="project">
+          <div class="project-logo"><i class="fa-solid fa-list"></i></div>
+          <p class="project-name">Project 2</p>
+        </li>
+      </ul>
+    </div>
+    <div class="main"></div>
+    <footer>
+      <p>
+        Copyright &copy; <span class="currentYear"></span>&nbsp;kennethlorenzg
+      </p>
+
+      <a href="https://github.com/kennethlorenz" target="_blank"
+        ><i class="fa-brands fa-github"></i
+      ></a>
+    </footer>
     <script src="main.js"></script>
+    <script
+      src="https://kit.fontawesome.com/8e0b079cd6.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
