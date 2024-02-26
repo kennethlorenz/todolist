@@ -57,7 +57,7 @@ ul {
 header,
 .sidebar,
 .sidebar ul,
-.project,
+.sidebar .project,
 footer {
   display: flex;
 }
@@ -88,11 +88,17 @@ footer {
   padding: 1rem 2rem;
 }
 
+.sidebar .project .delete {
+  margin-left: auto;
+  display: none;
+}
+
 .selected,
-.sidebar .project:hover {
+.sidebar .project:hover .delete {
   background-color: var(--light);
   border-radius: 1rem;
   cursor: pointer;
+  display: block;
 }
 
 .main {
