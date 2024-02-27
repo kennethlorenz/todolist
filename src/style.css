@@ -93,11 +93,14 @@ footer {
   display: none;
 }
 
-.selected,
-.sidebar .project:hover .delete {
+.project.selected,
+.project:hover {
   background-color: var(--light);
   border-radius: 1rem;
   cursor: pointer;
+}
+
+.project:hover .delete {
   display: block;
 }
 
