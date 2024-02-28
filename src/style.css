@@ -89,6 +89,12 @@ footer {
   gap: 1rem;
 }
 
+.projects {
+  height: 30rem;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
 .sidebar .project,
 #home {
   gap: 1rem;
