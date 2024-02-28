@@ -71,12 +71,17 @@ footer {
   font-size: 3rem;
 }
 
-#addProject {
+#addProject,
+#addTask {
   font-size: 1.5rem;
   display: flex;
   padding: 1rem 2rem;
   align-items: center;
   justify-content: space-between;
+}
+
+#addTask {
+  margin-top: auto;
 }
 
 .sidebar ul {
@@ -99,6 +104,7 @@ footer {
 .selected,
 .project:hover,
 #addProject:hover,
+#addTask:hover,
 #home:hover,
 .selected {
   background-color: var(--light);
@@ -107,7 +113,9 @@ footer {
 }
 
 .project:active,
-#addProject:active {
+#addProject:active,
+#home:active,
+#addTask:active {
   background-color: var(--medium);
 }
 
