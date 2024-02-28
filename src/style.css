@@ -87,13 +87,10 @@ footer {
   gap: 1rem;
 }
 
-.sidebar .projects {
-  font-size: 2rem;
-}
-
 .sidebar .project {
   gap: 1rem;
   padding: 1rem 2rem;
+  font-size: 1.65rem;
 }
 
 .sidebar .project .delete {
