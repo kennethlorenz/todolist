@@ -51,9 +51,6 @@ header {
   align-items: center;
 }
 
-ul {
-}
-
 header,
 .sidebar,
 .sidebar ul,
@@ -87,7 +84,8 @@ footer {
   gap: 1rem;
 }
 
-.sidebar .project {
+.sidebar .project,
+#home {
   gap: 1rem;
   padding: 1rem 2rem;
   font-size: 1.65rem;
@@ -98,9 +96,11 @@ footer {
   display: none;
 }
 
-.project.selected,
+.selected,
 .project:hover,
-#addProject:hover {
+#addProject:hover,
+#home:hover,
+.selected {
   background-color: var(--light);
   border-radius: 1rem;
   cursor: pointer;
