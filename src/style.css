@@ -43,6 +43,9 @@ footer i {
   color: white;
 }
 
+ul {
+  list-style: none;
+}
 header {
   background-color: var(--extra-medium);
   grid-area: header;
@@ -57,11 +60,13 @@ header,
 .sidebar,
 .projects,
 .project,
-footer {
+footer,
+.modal-sidebar ul {
   display: flex;
 }
 
-.sidebar {
+.sidebar,
+.modal-sidebar {
   background-color: var(--extra-light);
   grid-area: nav;
   flex-direction: column;
@@ -114,7 +119,8 @@ footer {
 .selected,
 .project:hover,
 #home:hover,
-.selected {
+.selected,
+.modal-item:hover {
   background-color: var(--light);
   border-radius: 1rem;
   cursor: pointer;
@@ -132,7 +138,7 @@ footer {
 
 /* Add Window Modal */
 .modal {
-  display: none; /* Hidden by default */
+  display: unset; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding: 10rem; /* Location of the box */
@@ -148,25 +154,40 @@ footer {
 /* Modal Content */
 
 .modal-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: grid;
+  grid-template: 5rem 1fr/ 20rem 1fr;
+  grid-template-areas:
+    "header header"
+    "nav main";
   background-color: #fefefe;
   margin: auto;
-  padding: 2rem;
   border: 1px solid #888;
-  width: 40rem;
+  width: 110rem;
+  height: 50rem;
   border-radius: 1rem;
-  align-items: center;
-  padding-bottom: 5rem;
   transition: 02s ease-in-out;
+}
+
+.modal-content header {
+  font-size: 2rem;
+  grid-area: header;
 }
 
 .modal-content .close {
   font-size: 4rem;
   margin-left: auto;
   cursor: pointer;
-  color: var(--dark-gray);
+  color: white;
+}
+
+.modal-sidebar ul {
+  font-size: 2rem;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.modal-item {
+  padding: 1rem 2rem;
 }
 
 .modal-content .close:hover {
@@ -207,7 +228,8 @@ footer {
 
 /* MAIN */
 
-.main {
+.main,
+.modal-main {
   background-color: var(--lightest);
   grid-area: main;
 }
