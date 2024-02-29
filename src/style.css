@@ -22,6 +22,8 @@ html {
   --light: #abb3ce;
   --extra-light: #ebecf3;
   --lightest: #f5f6fa;
+  --medium-gray: #d0d0d0;
+  --dark-gray: rgb(160, 160, 160);
 }
 
 body {
@@ -126,6 +128,81 @@ footer {
 
 .project:hover .delete {
   display: block;
+}
+
+/* Add Window Modal */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding: 10rem; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 2rem;
+  border: 1px solid #888;
+  width: 40rem;
+  border-radius: 1rem;
+  align-items: center;
+  padding-bottom: 5rem;
+  transition: 02s ease-in-out;
+}
+
+.modal-content .close {
+  font-size: 4rem;
+  margin-left: auto;
+  cursor: pointer;
+  color: var(--dark-gray);
+}
+
+.modal-content .close:hover {
+  color: black;
+}
+
+@keyframes zoomInModal {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOutModal {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.modalZoom {
+  animation: zoomInModal 0.25s ease;
+}
+
+.modalZoomOut {
+  animation: zoomOutModal 0.25s ease;
 }
 
 /* MAIN */
