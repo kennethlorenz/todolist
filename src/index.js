@@ -1,5 +1,4 @@
-import project from "./project";
-
+import CreateModalDOM from "./CreateModalDOM";
 const addButton = document.getElementById("add");
 const modal = document.querySelector(".modal");
 const modalCloseBtn = document.querySelector(".close");
@@ -23,3 +22,5 @@ function closeModal() {
   }, 200);
   resetForm();
 }
+
+CreateModalDOM();
