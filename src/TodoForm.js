@@ -38,8 +38,7 @@ export default function CreateTodo() {
   dueDateDiv.appendChild(dateInput);
 
   const secondChildDiv = document.createElement("div");
-  const priorityLabel = document.createElement("label");
-  priorityLabel.htmlFor = "priority";
+  const priorityLabel = document.createElement("p");
   priorityLabel.textContent = "Priority :";
 
   const lowRadioButton = document.createElement("input");
