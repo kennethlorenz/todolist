@@ -1,5 +1,5 @@
 import TodoForm from "./TodoForm";
-import ProjectForm from "./ProjectForm";
+import { CreateNewProjectForm } from "./ProjectForm";
 
 export default function CreateModalDOM() {
   const todo = document.getElementById("todo");
@@ -16,8 +16,7 @@ export default function CreateModalDOM() {
   });
 
   project.addEventListener("click", () => {
-    updateContent(ProjectForm(), project);
-    console.log("project clicked");
+    updateContent(CreateNewProjectForm(), project);
   });
 
   closeButton.addEventListener("click", () => {
