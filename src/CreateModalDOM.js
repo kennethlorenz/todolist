@@ -1,5 +1,5 @@
-import TodoForm from "./TodoForm";
-import { CreateNewProjectForm } from "./ProjectForm";
+import RenderTodoForm from "./TodoForm";
+import { RenderProjectForm } from "./ProjectForm";
 
 export default function CreateModalDOM() {
   const todo = document.getElementById("todo");
@@ -8,19 +8,19 @@ export default function CreateModalDOM() {
 
   const modalMainContent = document.querySelector(".modal-main");
 
-  modalMainContent.appendChild(TodoForm());
+  modalMainContent.appendChild(RenderTodoForm());
 
   todo.addEventListener("click", () => {
     console.log("todo clicked");
-    updateContent(TodoForm(), todo);
+    updateContent(RenderTodoForm(), todo);
   });
 
   project.addEventListener("click", () => {
-    updateContent(CreateNewProjectForm(), project);
+    updateContent(RenderProjectForm(), project);
   });
 
   closeButton.addEventListener("click", () => {
-    updateContent(TodoForm(), todo);
+    updateContent(RenderTodoForm(), todo);
   });
 
   function updateContent(page, item) {

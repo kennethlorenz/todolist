@@ -17,7 +17,7 @@ projectForm.appendChild(submitBtn);
 const div = document.createElement("div");
 div.textContent = "create project page";
 
-export function CreateNewProjectForm() {
+export function RenderProjectForm() {
   return projectForm;
 }
 
