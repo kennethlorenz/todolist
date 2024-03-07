@@ -1,4 +1,4 @@
-export default function project() {
+export default function project(projectTitle) {
   const project = document.createElement("li");
   project.classList.add("project");
 
@@ -11,7 +11,7 @@ export default function project() {
 
   const projectName = document.createElement("p");
   projectName.classList.add("project-name");
-  projectName.textContent = "Project 3";
+  projectName.textContent = projectTitle;
 
   const deleteContainer = document.createElement("div");
   deleteContainer.classList.add("delete");
