@@ -1,7 +1,5 @@
-import CreateProject, {
-  GetProjects,
-  DoesProjectNameExist,
-} from "./CreateProject";
+import CreateProject, { ProjectExists } from "./CreateProject";
+import { closeModal } from "./index";
 import project from "./project";
 const projectForm = document.createElement("form");
 projectForm.id = "addProjectForm";
@@ -34,13 +32,30 @@ export function RenderProjectForm() {
 export function AddNewProject() {
   submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    isFormValid();
+    const projectName = titleTextArea.value;
+    if (isFormValid() == false) {
+      return;
+    }
+    CreateNewProject(formatProjectName(projectName));
   });
+}
+function CreateNewProject(projectName) {
+  //check for duplicates
+  if (ProjectExists(projectName) == true) {
+    DisplayDuplicateMessage();
+  } else {
+    CreateProject(projectName);
+    ClearForm();
+  }
+}
+
+function formatProjectName(projectName) {
+  return projectName.charAt(0).toUpperCase() + projectName.slice(1);
 }
 
 function isFormValid() {
   if (projectForm.checkValidity()) {
-    RemoveErrorMessage();
+    ClearForm();
     return true;
   } else {
     DisplayErrorMessage();
@@ -48,12 +63,18 @@ function isFormValid() {
   }
 }
 
+function DisplayDuplicateMessage() {
+  errorMessage.textContent = "Project Name already exists";
+  errorMessage.style.display = "unset";
+}
+
 function DisplayErrorMessage() {
   errorMessage.textContent = "Project Name is required.";
   errorMessage.style.display = "unset";
 }
 
-function RemoveErrorMessage() {
+function ClearForm() {
   errorMessage.textContent = "";
   errorMessage.style.display = "none";
+  titleTextArea.value = "";
 }
