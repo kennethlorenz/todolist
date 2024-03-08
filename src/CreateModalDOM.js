@@ -17,7 +17,7 @@ export default function CreateModalDOM() {
 }
 
 export function closeModal() {
-  setActiveModal(todo);
+  updateContent(RenderTodoForm(), todo);
   modalContent.classList.remove("modalZoom");
   modalContent.classList.add("modalZoomOut");
   setTimeout(() => {
