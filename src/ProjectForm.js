@@ -1,6 +1,6 @@
 import CreateProject, { ProjectExists } from "./CreateProject";
-import { closeModal } from "./index";
-import project from "./project";
+import { closeModal } from "./CreateModalDOM";
+import { AddProjectToSideBar } from "./SidebarDOM";
 const projectForm = document.createElement("form");
 projectForm.id = "addProjectForm";
 projectForm.method = "post";
@@ -39,6 +39,7 @@ export function AddNewProject() {
     CreateNewProject(formatProjectName(projectName));
   });
 }
+
 function CreateNewProject(projectName) {
   //check for duplicates
   if (ProjectExists(projectName) == true) {
@@ -46,9 +47,12 @@ function CreateNewProject(projectName) {
   } else {
     CreateProject(projectName);
     ClearForm();
+    AddProjectToSideBar(projectName);
+    closeModal();
   }
 }
 
+//capitalize first letter
 function formatProjectName(projectName) {
   return projectName.charAt(0).toUpperCase() + projectName.slice(1);
 }
