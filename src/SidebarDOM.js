@@ -2,29 +2,9 @@ import project from "./project";
 import { GetProjects } from "./CreateProject";
 
 const projectsContainer = document.querySelector(".projects");
-const sideBarItems = document.querySelectorAll(".project");
+const homeButton = document.querySelector("#home.project");
 
-export default function SideBarDom() {
-  HandleSideBarSelection();
-  RenderProjects();
-}
-
-function HandleSideBarSelection() {
-  sideBarItems.forEach((item) => {
-    item.addEventListener("click", () => {
-      deselectProject();
-      item.classList.add("selected");
-    });
-  });
-
-  function deselectProject() {
-    sideBarItems.forEach((item) => {
-      item.classList.remove("selected");
-    });
-  }
-}
-
-export function RenderProjects() {
+export default function RenderProjects() {
   const projects = GetProjects();
 
   projects.forEach((projectItem) => {
@@ -34,5 +14,22 @@ export function RenderProjects() {
 }
 
 export function AddProjectToSideBar(projectName) {
-  projectsContainer.appendChild(project(projectName));
+  const newProj = project(projectName);
+  projectsContainer.appendChild(newProj);
+  highlightSelectedProject(newProj);
 }
+
+export function highlightSelectedProject(project) {
+  let sideBarItems = document.querySelectorAll(".project");
+  sideBarItems.forEach((item) => {
+    if (item.dataset.id != project.dataset.id) {
+      item.classList.remove("selected");
+    } else {
+      item.classList.add("selected");
+    }
+  });
+}
+
+homeButton.addEventListener("click", () => {
+  highlightSelectedProject(homeButton);
+});
