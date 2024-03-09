@@ -14,6 +14,7 @@ titleTextArea.id = "projectName";
 titleTextArea.placeholder = "Project Name: House Renovations";
 titleTextArea.name = "projectName";
 titleTextArea.required = true;
+titleTextArea.maxLength = 15;
 
 const submitBtn = document.createElement("button");
 submitBtn.type = "submit";
