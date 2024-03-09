@@ -30,16 +30,14 @@ export function RenderProjectForm() {
   return projectForm;
 }
 
-export function AddNewProject() {
-  submitBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    const projectName = titleTextArea.value;
-    if (isFormValid() == false) {
-      return;
-    }
-    CreateNewProject(formatProjectName(projectName));
-  });
-}
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  const projectName = titleTextArea.value;
+  if (isFormValid() == false) {
+    return;
+  }
+  CreateNewProject(formatProjectName(projectName));
+});
 
 function CreateNewProject(projectName) {
   //check for duplicates
