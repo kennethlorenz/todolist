@@ -1,6 +1,10 @@
+let projectIdCounter = 1;
+import { highlightSelectedProject } from "./SidebarDOM";
+
 export default function project(projectTitle) {
   const project = document.createElement("li");
   project.classList.add("project");
+  project.dataset.id = projectIdCounter;
 
   const projectLogoContainer = document.createElement("div");
   projectLogoContainer.classList.add("project-logo");
@@ -26,6 +30,12 @@ export default function project(projectTitle) {
   project.appendChild(projectName);
   project.appendChild(deleteContainer);
   deleteContainer.appendChild(deleteLogo);
+
+  projectIdCounter += 1;
+
+  project.addEventListener("click", () => {
+    highlightSelectedProject(project);
+  });
 
   return project;
 }
