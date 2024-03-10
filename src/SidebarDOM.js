@@ -1,5 +1,6 @@
 import project from "./project";
 import { GetProjects } from "./CreateProject";
+import { DeleteProjectFromLocalStorage } from "./CreateProject";
 
 const projectsContainer = document.querySelector(".projects");
 const homeButton = document.querySelector("#home.project");
@@ -28,6 +29,13 @@ export function highlightSelectedProject(project) {
       item.classList.add("selected");
     }
   });
+}
+
+export function DeleteProject(projectId, projectName) {
+  highlightSelectedProject(homeButton);
+  const projectToDelete = document.querySelector(`[data-id='${projectId}']`);
+  projectsContainer.removeChild(projectToDelete);
+  DeleteProjectFromLocalStorage(projectName);
 }
 
 homeButton.addEventListener("click", () => {
