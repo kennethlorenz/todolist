@@ -124,7 +124,10 @@ footer,
 
 .project .delete {
   margin-left: auto;
-  display: none;
+}
+
+.project .delete:hover {
+  transform: scale(1.2);
 }
 
 .selected,
