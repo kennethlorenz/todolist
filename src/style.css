@@ -118,6 +118,10 @@ footer,
   font-size: 1.65rem;
 }
 
+#home {
+  align-items: center;
+}
+
 .project .delete {
   margin-left: auto;
   display: none;
