@@ -33,12 +33,14 @@ export default function project(projectTitle) {
 
   projectIdCounter += 1;
 
-  projectName.addEventListener("click", () => {
-    highlightSelectedProject(project);
-  });
+  project.addEventListener("click", (e) => {
+    const elementCLicked = e.target.tagName;
 
-  deleteLogo.addEventListener("click", () => {
-    DeleteProject(project.dataset.id, projectName.textContent);
+    if (elementCLicked == "LI") {
+      highlightSelectedProject(project);
+    } else if (elementCLicked == "I") {
+      DeleteProject(project.dataset.id, projectName.textContent);
+    }
   });
 
   return project;
