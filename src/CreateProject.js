@@ -1,11 +1,11 @@
 import ProjectClass from "./classes/ProjectClass";
-const allKeys = Object.keys(localStorage);
 export default function CreateProject(projectName) {
   const newProject = new ProjectClass(projectName);
   localStorage.setItem(projectName, JSON.stringify(newProject));
 }
 
 export function GetProjects() {
+  const allKeys = Object.keys(localStorage);
   const projects = [];
   allKeys.map((key) => {
     const item = JSON.parse(localStorage.getItem(key));
@@ -23,4 +23,8 @@ export function ProjectExists(projectName) {
   } else {
     return true;
   }
+}
+
+export function DeleteProjectFromLocalStorage(projectName) {
+  localStorage.removeItem(projectName);
 }
