@@ -45,7 +45,7 @@ function CreateNewProject(projectName) {
     DisplayDuplicateMessage();
   } else {
     CreateProject(projectName);
-    ClearForm();
+    ClearCreateProjectForm();
     AddProjectToSideBar(projectName);
     closeModal();
   }
@@ -76,7 +76,7 @@ function DisplayErrorMessage() {
   errorMessage.style.display = "unset";
 }
 
-function ClearForm() {
+export function ClearCreateProjectForm() {
   errorMessage.textContent = "";
   errorMessage.style.display = "none";
   titleTextArea.value = "";
