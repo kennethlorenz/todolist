@@ -64,7 +64,8 @@ footer,
 .modal-sidebar ul,
 #addTodoForm div:nth-child(1),
 #addTodoForm div:nth-child(2) div:nth-child(2),
-#addTodoForm > div:nth-child(2) {
+#addTodoForm > div:nth-child(2),
+.main {
   display: flex;
 }
 
@@ -354,6 +355,25 @@ form button[type="submit"]:active {
 .modal-main {
   background-color: var(--lightest);
   grid-area: main;
+}
+
+.main {
+  padding: 2rem;
+  justify-content: center;
+}
+
+.main-heading {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.project-title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 0.3rem solid var(--extra-medium);
+  padding: 1rem;
 }
 
 /* Footer */
