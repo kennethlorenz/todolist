@@ -1,6 +1,8 @@
 import project from "./project";
-import { GetProjects } from "./CreateProject";
-import { DeleteProjectFromLocalStorage } from "./CreateProject";
+import {
+  GetProjects,
+  DeleteProjectFromLocalStorage,
+} from "./LocalStorageManager";
 
 const projectsContainer = document.querySelector(".projects");
 const homeButton = document.querySelector("#home.project");

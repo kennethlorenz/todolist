@@ -1,4 +1,4 @@
-import CreateProject, { ProjectExists } from "./CreateProject";
+import CreateProject, { ProjectExists } from "./LocalStorageManager";
 import { closeModal } from "./CreateModalDOM";
 import { AddProjectToSideBar } from "./SidebarDOM";
 const projectForm = document.createElement("form");
