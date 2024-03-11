@@ -1,5 +1,5 @@
 import RenderTodoForm from "./TodoForm";
-import { RenderProjectForm } from "./ProjectForm";
+import { RenderProjectForm, ClearCreateProjectForm } from "./ProjectForm";
 
 const addButton = document.getElementById("add");
 const modal = document.querySelector(".modal");
@@ -62,5 +62,6 @@ addButton.addEventListener("click", () => {
 });
 
 modalCloseBtn.addEventListener("click", () => {
+  ClearCreateProjectForm();
   closeModal();
 });
