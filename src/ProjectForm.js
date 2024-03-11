@@ -58,7 +58,7 @@ function formatProjectName(projectName) {
 
 function isFormValid() {
   if (projectForm.checkValidity()) {
-    ClearForm();
+    ClearCreateProjectForm();
     return true;
   } else {
     DisplayErrorMessage();
