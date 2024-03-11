@@ -34,11 +34,11 @@ export default function project(projectTitle) {
   projectIdCounter += 1;
 
   project.addEventListener("click", (e) => {
-    const elementCLicked = e.target.tagName;
+    const elementCLicked = e.target.classList;
 
-    if (elementCLicked == "LI") {
+    if (!elementCLicked.contains("fa-x")) {
       highlightSelectedProject(project);
-    } else if (elementCLicked == "I") {
+    } else {
       DeleteProject(project.dataset.id, projectName.textContent);
     }
   });
