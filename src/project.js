@@ -1,10 +1,10 @@
-let projectIdCounter = 1;
 import { highlightSelectedProject, DeleteProject } from "./SidebarDOM";
+import { RenderMainContent } from "./MainContent";
 
 export default function project(projectTitle) {
   const project = document.createElement("li");
   project.classList.add("project");
-  project.dataset.id = projectIdCounter;
+  project.dataset.id = projectTitle;
 
   const projectLogoContainer = document.createElement("div");
   projectLogoContainer.classList.add("project-logo");
@@ -31,13 +31,12 @@ export default function project(projectTitle) {
   project.appendChild(deleteContainer);
   deleteContainer.appendChild(deleteLogo);
 
-  projectIdCounter += 1;
-
   project.addEventListener("click", (e) => {
     const elementCLicked = e.target.classList;
 
     if (!elementCLicked.contains("fa-x")) {
       highlightSelectedProject(project);
+      RenderMainContent(project);
     } else {
       DeleteProject(project.dataset.id, projectName.textContent);
     }
