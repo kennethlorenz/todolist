@@ -3,6 +3,7 @@ import {
   GetProjects,
   DeleteProjectFromLocalStorage,
 } from "./LocalStorageManager";
+import { RenderMainContent } from "./MainContent";
 
 const projectsContainer = document.querySelector(".projects");
 const homeButton = document.querySelector("#home.project");
@@ -14,6 +15,7 @@ export default function RenderProjects() {
     project(projectItem.title);
     projectsContainer.appendChild(project(projectItem.title));
   });
+  RenderMainContent(homeButton);
 }
 
 export function AddProjectToSideBar(projectName) {
@@ -42,4 +44,5 @@ export function DeleteProject(projectId, projectName) {
 
 homeButton.addEventListener("click", () => {
   highlightSelectedProject(homeButton);
+  RenderMainContent(homeButton);
 });
