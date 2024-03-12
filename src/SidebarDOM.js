@@ -15,7 +15,7 @@ export default function RenderProjects() {
     project(projectItem.title);
     projectsContainer.appendChild(project(projectItem.title));
   });
-  RenderMainContent(homeButton);
+  SetSelectedProject(homeButton);
 }
 
 export function AddProjectToSideBar(projectName) {
