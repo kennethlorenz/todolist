@@ -21,10 +21,10 @@ export default function RenderProjects() {
 export function AddProjectToSideBar(projectName) {
   const newProj = project(projectName);
   projectsContainer.appendChild(newProj);
-  highlightSelectedProject(newProj);
+  SetSelectedProject(newProj);
 }
 
-export function highlightSelectedProject(project) {
+export function HighlightSelectedProject(project) {
   let sideBarItems = document.querySelectorAll(".project");
   sideBarItems.forEach((item) => {
     if (item.dataset.id != project.dataset.id) {
@@ -36,13 +36,17 @@ export function highlightSelectedProject(project) {
 }
 
 export function DeleteProject(projectId, projectName) {
-  highlightSelectedProject(homeButton);
+  SetSelectedProject(homeButton);
   const projectToDelete = document.querySelector(`[data-id='${projectId}']`);
   projectsContainer.removeChild(projectToDelete);
   DeleteProjectFromLocalStorage(projectName);
 }
 
+export function SetSelectedProject(projectName) {
+  HighlightSelectedProject(projectName);
+  RenderMainContent(projectName);
+}
+
 homeButton.addEventListener("click", () => {
-  highlightSelectedProject(homeButton);
-  RenderMainContent(homeButton);
+  SetSelectedProject(homeButton);
 });
