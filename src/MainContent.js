@@ -1,4 +1,6 @@
 export default function MainContent(projectName) {
+  const mainDiv = document.createElement("div");
+  mainDiv.classList.add("main");
   const mainHeadingDiv = document.createElement("div");
   mainHeadingDiv.classList.add("main-heading");
 
@@ -10,10 +12,14 @@ export default function MainContent(projectName) {
   todosContainer.id = "todosContainer";
 
   mainHeadingDiv.appendChild(projectTitle);
-  return mainHeadingDiv;
+
+  mainDiv.appendChild(mainHeadingDiv);
+  mainDiv.appendChild(todosContainer);
+  return mainDiv;
 }
 
 export function RenderMainContent(project) {
-  let mainDiv = document.querySelector(".main");
-  mainDiv.replaceChildren(MainContent(project.dataset.id));
+  let body = document.querySelector("body");
+  body.appendChild(MainContent(project.dataset.id), body.children[3]);
+  //mainDiv.replaceChildren(MainContent(project.dataset.id));
 }
