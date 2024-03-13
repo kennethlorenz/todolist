@@ -10,6 +10,7 @@ export default function RenderTodoForm() {
   titleInput.id = "title";
   titleInput.placeholder = "Title: Pay Bills";
   titleInput.name = "title";
+  titleInput.required = true;
 
   const detailsTextArea = document.createElement("textarea");
   detailsTextArea.id = "details";
@@ -32,6 +33,7 @@ export default function RenderTodoForm() {
   dateInput.type = "date";
   dateInput.id = "date";
   dateInput.name = "date";
+  dateInput.required = true;
 
   secondDiv.appendChild(dueDateDiv);
   dueDateDiv.appendChild(dateLabel);
@@ -45,6 +47,7 @@ export default function RenderTodoForm() {
   lowRadioButton.type = "radio";
   lowRadioButton.id = "low";
   lowRadioButton.name = "priority";
+  lowRadioButton.required = true;
   const lowRadioLabel = document.createElement("label");
   lowRadioLabel.htmlFor = "low";
   lowRadioLabel.textContent = "Low";
@@ -82,6 +85,32 @@ export default function RenderTodoForm() {
   secondDiv.appendChild(secondChildDiv);
 
   todoForm.appendChild(secondDiv);
+
+  todoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("Addtodo clicked");
+    isFormValid();
+  });
+
+  function isFormValid() {
+    if (todoForm.checkValidity()) {
+      console.log("valid form");
+      clearForm();
+    } else {
+      console.log("invalid form");
+    }
+  }
+
+  function clearForm() {
+    titleInput.value = "";
+    detailsTextArea.value = "";
+    dateInput.value = "";
+
+    const radios = document.querySelectorAll(`input[name=priority]`);
+    radios.forEach((node) => {
+      node.checked = false;
+    });
+  }
 
   return todoForm;
 }
