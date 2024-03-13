@@ -1,30 +1,30 @@
 import project from "./project";
 import {
-  GetProjects,
-  DeleteProjectFromLocalStorage,
+  getProjects,
+  deleteProjectFromLocalStorage,
 } from "./LocalStorageManager";
-import { RenderMainContent } from "./MainContent";
+import { renderMainContent } from "./MainContent";
 
 const projectsContainer = document.querySelector(".projects");
 const homeButton = document.querySelector("#home.project");
 
 export default function RenderProjects() {
-  const projects = GetProjects();
+  const projects = getProjects();
 
   projects.forEach((projectItem) => {
     project(projectItem.title);
     projectsContainer.appendChild(project(projectItem.title));
   });
-  SetSelectedProject(homeButton);
+  setSelectedProject(homeButton);
 }
 
-export function AddProjectToSideBar(projectName) {
+export function addProjectToSideBar(projectName) {
   const newProj = project(projectName);
   projectsContainer.appendChild(newProj);
-  SetSelectedProject(newProj);
+  setSelectedProject(newProj);
 }
 
-export function HighlightSelectedProject(project) {
+export function highlightSelectedProject(project) {
   let sideBarItems = document.querySelectorAll(".project");
   sideBarItems.forEach((item) => {
     if (item.dataset.id != project.dataset.id) {
@@ -35,18 +35,18 @@ export function HighlightSelectedProject(project) {
   });
 }
 
-export function DeleteProject(projectId, projectName) {
-  SetSelectedProject(homeButton);
+export function deleteProject(projectId, projectName) {
+  setSelectedProject(homeButton);
   const projectToDelete = document.querySelector(`[data-id='${projectId}']`);
   projectsContainer.removeChild(projectToDelete);
-  DeleteProjectFromLocalStorage(projectName);
+  deleteProjectFromLocalStorage(projectName);
 }
 
-export function SetSelectedProject(projectName) {
-  HighlightSelectedProject(projectName);
-  RenderMainContent(projectName);
+export function setSelectedProject(projectName) {
+  highlightSelectedProject(projectName);
+  renderMainContent(projectName);
 }
 
 homeButton.addEventListener("click", () => {
-  SetSelectedProject(homeButton);
+  setSelectedProject(homeButton);
 });

@@ -1,5 +1,5 @@
-import RenderTodoForm from "./TodoForm";
-import { RenderProjectForm, ClearCreateProjectForm } from "./ProjectForm";
+import renderTodoForm from "./TodoForm";
+import { renderProjectForm, clearCreateProjectForm } from "./ProjectForm";
 
 const addButton = document.getElementById("add");
 const modal = document.querySelector(".modal");
@@ -12,12 +12,12 @@ const closeButton = document.querySelector(".close");
 
 const modalMainContent = document.querySelector(".modal-main");
 
-export default function CreateModalDOM() {
-  modalMainContent.appendChild(RenderTodoForm());
+export default function createModalDOM() {
+  modalMainContent.appendChild(renderTodoForm());
 }
 
 export function closeModal() {
-  updateContent(RenderTodoForm(), todo);
+  updateContent(renderTodoForm(), todo);
   modalContent.classList.remove("modalZoom");
   modalContent.classList.add("modalZoomOut");
   setTimeout(() => {
@@ -26,15 +26,15 @@ export function closeModal() {
 }
 
 todo.addEventListener("click", () => {
-  updateContent(RenderTodoForm(), todo);
+  updateContent(renderTodoForm(), todo);
 });
 
 project.addEventListener("click", () => {
-  updateContent(RenderProjectForm(), project);
+  updateContent(renderProjectForm(), project);
 });
 
 closeButton.addEventListener("click", () => {
-  updateContent(RenderTodoForm(), todo);
+  updateContent(renderTodoForm(), todo);
   setActiveModal(todo);
 });
 
@@ -62,6 +62,6 @@ addButton.addEventListener("click", () => {
 });
 
 modalCloseBtn.addEventListener("click", () => {
-  ClearCreateProjectForm();
+  clearCreateProjectForm();
   closeModal();
 });

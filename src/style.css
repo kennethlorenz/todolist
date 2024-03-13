@@ -153,7 +153,7 @@ footer,
 
 /* Add Window Modal */
 .modal {
-  display: none; /* Hidden by default */
+  display: unset; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   padding: 10rem; /* Location of the box */

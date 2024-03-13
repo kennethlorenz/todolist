@@ -1,4 +1,4 @@
-export default function MainContent(projectName) {
+export default function mainContent(projectName) {
   const mainDiv = document.createElement("div");
   mainDiv.classList.add("main");
   const mainHeadingDiv = document.createElement("div");
@@ -18,8 +18,8 @@ export default function MainContent(projectName) {
   return mainDiv;
 }
 
-export function RenderMainContent(project) {
+export function renderMainContent(project) {
   let body = document.querySelector("body");
-  body.appendChild(MainContent(project.dataset.id), body.children[3]);
+  body.appendChild(mainContent(project.dataset.id), body.children[3]);
   //mainDiv.replaceChildren(MainContent(project.dataset.id));
 }

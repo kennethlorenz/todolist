@@ -1,6 +1,6 @@
-import CreateProject, { ProjectExists } from "./LocalStorageManager";
+import { createProject, projectExists } from "./LocalStorageManager";
 import { closeModal } from "./CreateModalDOM";
-import { AddProjectToSideBar } from "./SidebarDOM";
+import { addProjectToSideBar } from "./SidebarDOM";
 const projectForm = document.createElement("form");
 projectForm.id = "addProjectForm";
 projectForm.method = "post";
@@ -26,7 +26,7 @@ projectForm.appendChild(submitBtn);
 const div = document.createElement("div");
 div.textContent = "create project page";
 
-export function RenderProjectForm() {
+export function renderProjectForm() {
   return projectForm;
 }
 
@@ -36,17 +36,17 @@ submitBtn.addEventListener("click", (e) => {
   if (isFormValid() == false) {
     return;
   }
-  CreateNewProject(formatProjectName(projectName));
+  createNewProject(formatProjectName(projectName));
 });
 
-function CreateNewProject(projectName) {
+function createNewProject(projectName) {
   //check for duplicates
-  if (ProjectExists(projectName) == true) {
-    DisplayDuplicateMessage();
+  if (projectExists(projectName) == true) {
+    displayDuplicateMessage();
   } else {
-    CreateProject(projectName);
-    ClearCreateProjectForm();
-    AddProjectToSideBar(projectName);
+    createProject(projectName);
+    clearCreateProjectForm();
+    addProjectToSideBar(projectName);
     closeModal();
   }
 }
@@ -58,25 +58,25 @@ function formatProjectName(projectName) {
 
 function isFormValid() {
   if (projectForm.checkValidity()) {
-    ClearCreateProjectForm();
+    clearCreateProjectForm();
     return true;
   } else {
-    DisplayErrorMessage();
+    displayErrorMessage();
     return false;
   }
 }
 
-function DisplayDuplicateMessage() {
+function displayDuplicateMessage() {
   errorMessage.textContent = "Project Name already exists";
   errorMessage.style.display = "unset";
 }
 
-function DisplayErrorMessage() {
+function displayErrorMessage() {
   errorMessage.textContent = "Project Name is required.";
   errorMessage.style.display = "unset";
 }
 
-export function ClearCreateProjectForm() {
+export function clearCreateProjectForm() {
   errorMessage.textContent = "";
   errorMessage.style.display = "none";
   titleTextArea.value = "";

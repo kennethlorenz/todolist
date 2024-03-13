@@ -1,4 +1,4 @@
-export default function RenderTodoForm() {
+export default function renderTodoForm() {
   const todoForm = document.createElement("form");
   todoForm.method = "post";
   todoForm.id = "addTodoForm";

@@ -1,9 +1,4 @@
-import {
-  HighlightSelectedProject,
-  DeleteProject,
-  SetSelectedProject,
-} from "./SidebarDOM";
-import { RenderMainContent } from "./MainContent";
+import { deleteProject, setSelectedProject } from "./SidebarDOM";
 
 export default function project(projectTitle) {
   const project = document.createElement("li");
@@ -39,9 +34,9 @@ export default function project(projectTitle) {
     const elementCLicked = e.target.classList;
 
     if (!elementCLicked.contains("fa-x")) {
-      SetSelectedProject(project);
+      setSelectedProject(project);
     } else {
-      DeleteProject(project.dataset.id, projectName.textContent);
+      deleteProject(project.dataset.id, projectName.textContent);
     }
   });
 

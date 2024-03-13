@@ -1,10 +1,10 @@
 import ProjectClass from "./classes/ProjectClass";
-export default function CreateProject(projectName) {
+export function createProject(projectName) {
   const newProject = new ProjectClass(projectName);
   localStorage.setItem(projectName, JSON.stringify(newProject));
 }
 
-export function GetProjects() {
+export function getProjects() {
   const allKeys = Object.keys(localStorage);
   const projects = [];
   allKeys.map((key) => {
@@ -15,7 +15,7 @@ export function GetProjects() {
   return projects;
 }
 
-export function ProjectExists(projectName) {
+export function projectExists(projectName) {
   const proj = JSON.parse(localStorage.getItem(projectName));
 
   if (proj == null) {
@@ -25,6 +25,6 @@ export function ProjectExists(projectName) {
   }
 }
 
-export function DeleteProjectFromLocalStorage(projectName) {
+export function deleteProjectFromLocalStorage(projectName) {
   localStorage.removeItem(projectName);
 }

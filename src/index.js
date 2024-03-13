@@ -1,5 +1,5 @@
-import CreateModalDOM from "./CreateModalDOM";
-import SideBarDom from "./SidebarDOM";
+import createModalDOM from "./CreateModalDOM";
+import sideBarDom from "./SidebarDOM";
 
-CreateModalDOM();
-SideBarDom();
+createModalDOM();
+sideBarDom();
