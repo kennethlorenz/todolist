@@ -4,5 +4,6 @@ export default class Todo {
     this.details = details;
     this.dueDate = dueDate;
     this.priority = priority;
+    this.checked = false;
   }
 }
