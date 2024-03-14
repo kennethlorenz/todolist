@@ -1,3 +1,4 @@
+import { closeModal } from "./CreateModalDOM";
 import { createTodo } from "./LocalStorageManager";
 const todoForm = document.createElement("form");
 todoForm.method = "post";
@@ -105,11 +106,11 @@ todoForm.addEventListener("submit", (e) => {
     (e) => e.checked
   ).value;
   createTodo(key, title, details, dueDate, priority);
+  closeModal();
 });
 
 function isFormValid() {
   if (todoForm.checkValidity()) {
-    clearForm();
     return true;
   } else {
     return false;
