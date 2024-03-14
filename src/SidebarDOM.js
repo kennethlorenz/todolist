@@ -8,10 +8,13 @@ import { renderMainContent } from "./MainContent";
 const projectsContainer = document.querySelector(".projects");
 const homeButton = document.querySelector("#home.project");
 
-export default function RenderProjects() {
+export default function renderProjectsOnSidebar() {
   const projects = getProjects();
 
   projects.forEach((projectItem) => {
+    if (projectItem.title == "Home") {
+      return;
+    }
     project(projectItem.title);
     projectsContainer.appendChild(project(projectItem.title));
   });
