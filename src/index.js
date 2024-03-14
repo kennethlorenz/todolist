@@ -1,5 +1,7 @@
 import createModalDOM from "./CreateModalDOM";
-import sideBarDom from "./SidebarDOM";
+import renderProjectsOnSidebar from "./SidebarDOM";
+import { createProject } from "./LocalStorageManager";
 
 createModalDOM();
-sideBarDom();
+renderProjectsOnSidebar();
+createProject("Home");
