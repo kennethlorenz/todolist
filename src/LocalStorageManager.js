@@ -41,3 +41,11 @@ export function createTodo(key, title, details, dueDate, priority) {
     JSON.stringify({ title: proj.title, todos: todosArray })
   );
 }
+
+export function initializeHomeStorage() {
+  if (localStorage.getItem("Home") == null) {
+    createProject("Home");
+  } else {
+    return;
+  }
+}
