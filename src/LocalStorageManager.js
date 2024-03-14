@@ -30,7 +30,14 @@ export function deleteProjectFromLocalStorage(projectName) {
   localStorage.removeItem(projectName);
 }
 
-export function createTodo(title, details, dueDate, priority) {
+export function createTodo(key, title, details, dueDate, priority) {
   const todo = new Todo(title, details, dueDate, priority);
-  console.log(todo);
+  const proj = JSON.parse(localStorage.getItem(key));
+  const todosArray = proj.todos;
+  todosArray.push(todo);
+
+  localStorage.setItem(
+    key,
+    JSON.stringify({ title: proj.title, todos: todosArray })
+  );
 }
