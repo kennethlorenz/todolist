@@ -1,5 +1,6 @@
 import renderTodoForm from "./TodoForm";
 import { renderProjectForm, clearCreateProjectForm } from "./ProjectForm";
+import { clearTodoForm } from "./TodoForm";
 
 const addButton = document.getElementById("add");
 const modal = document.querySelector(".modal");
@@ -23,6 +24,8 @@ export function closeModal() {
   setTimeout(() => {
     modal.style.display = "none";
   }, 200);
+  clearCreateProjectForm();
+  clearTodoForm();
 }
 
 todo.addEventListener("click", () => {
@@ -62,6 +65,5 @@ addButton.addEventListener("click", () => {
 });
 
 modalCloseBtn.addEventListener("click", () => {
-  clearCreateProjectForm();
   closeModal();
 });
