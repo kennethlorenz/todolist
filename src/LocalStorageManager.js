@@ -1,4 +1,5 @@
 import ProjectClass from "./classes/ProjectClass";
+import Todo from "./classes/Todo";
 export function createProject(projectName) {
   const newProject = new ProjectClass(projectName);
   localStorage.setItem(projectName, JSON.stringify(newProject));
@@ -27,4 +28,9 @@ export function projectExists(projectName) {
 
 export function deleteProjectFromLocalStorage(projectName) {
   localStorage.removeItem(projectName);
+}
+
+export function createTodo(title, details, dueDate, priority) {
+  const todo = new Todo(title, details, dueDate, priority);
+  console.log(todo);
 }
