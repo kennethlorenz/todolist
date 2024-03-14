@@ -45,7 +45,6 @@ function createNewProject(projectName) {
     displayDuplicateMessage();
   } else {
     createProject(projectName);
-    clearCreateProjectForm();
     addProjectToSideBar(projectName);
     closeModal();
   }
@@ -58,7 +57,6 @@ function formatProjectName(projectName) {
 
 function isFormValid() {
   if (projectForm.checkValidity()) {
-    clearCreateProjectForm();
     return true;
   } else {
     displayErrorMessage();
