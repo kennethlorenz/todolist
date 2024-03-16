@@ -32,8 +32,6 @@ export function renderAllTodos() {
   const key = document.querySelector(".project.selected").dataset.id;
   let projectTodos;
 
-  const todosContainer = document.querySelector("#todosContainer");
-
   if (getTodosFromSelectedProject(key) == null) {
     return;
   } else {
@@ -45,14 +43,19 @@ export function renderAllTodos() {
       `Title: ${item.title}, Details: ${item.details}, DueDate: ${item.dueDate}, Priority: ${item.priorty}, Checked: ${item.checked} `
     );
 
-    const todo = todoItem(
+    addTodoToMain(
       key,
       item.title,
       item.details,
       item.dueDate,
-      item.priorty,
+      item.priority,
       item.checked
     );
-    todosContainer.appendChild(todo);
   });
+}
+
+export function addTodoToMain(key, title, details, dueDate, priority, checked) {
+  const todosContainer = document.querySelector("#todosContainer");
+  const todo = todoItem(key, title, details, dueDate, priority, checked);
+  todosContainer.appendChild(todo);
 }
