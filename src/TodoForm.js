@@ -1,5 +1,6 @@
 import { closeModal } from "./CreateModalDOM";
 import { createTodo } from "./LocalStorageManager";
+import { addTodoToMain } from "./MainContent";
 const todoForm = document.createElement("form");
 todoForm.method = "post";
 todoForm.id = "addTodoForm";
@@ -105,9 +106,14 @@ todoForm.addEventListener("submit", (e) => {
   const priority = Array.from(document.getElementsByName("priority")).find(
     (e) => e.checked
   ).value;
-  createTodo(key, title, details, dueDate, priority);
+  addTodo(key, title, details, dueDate, priority);
   closeModal();
 });
+
+function addTodo(key, title, details, dueDate, priority) {
+  createTodo(key, title, details, dueDate, priority);
+  addTodoToMain(key, title, details, dueDate, priority);
+}
 
 function isFormValid() {
   if (todoForm.checkValidity()) {
