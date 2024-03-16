@@ -1,5 +1,6 @@
 import ProjectClass from "./classes/ProjectClass";
 import Todo from "./classes/Todo";
+import project from "./project";
 export function createProject(projectName) {
   const newProject = new ProjectClass(projectName);
   localStorage.setItem(projectName, JSON.stringify(newProject));
@@ -42,10 +43,15 @@ export function createTodo(key, title, details, dueDate, priority) {
   );
 }
 
-export function initializeHomeStorage() {
-  if (localStorage.getItem("Home") == null) {
-    createProject("Home");
+export function getTodosFromSelectedProject(key) {
+  let selectedProject;
+
+  if (projectExists(key)) {
+    selectedProject = JSON.parse(localStorage.getItem(key));
   } else {
-    return;
+    createProject(key);
+    selectedProject = JSON.parse(localStorage.getItem(key));
   }
+  const todos = selectedProject.todos;
+  return todos;
 }
