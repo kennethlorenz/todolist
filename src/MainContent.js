@@ -1,6 +1,5 @@
 import { getTodosFromSelectedProject } from "./LocalStorageManager";
 import todoItem from "./TodoItem";
-import { initializeHomeStorage } from "./LocalStorageManager";
 export default function mainContent(projectName) {
   const mainDiv = document.createElement("div");
   mainDiv.classList.add("main");
