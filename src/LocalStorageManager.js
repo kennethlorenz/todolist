@@ -33,14 +33,22 @@ export function deleteProjectFromLocalStorage(projectName) {
 
 export function createTodo(key, title, details, dueDate, priority) {
   const todo = new Todo(title, details, dueDate, priority);
-  const proj = JSON.parse(localStorage.getItem(key));
-  const todosArray = proj.todos;
-  todosArray.push(todo);
+  if (key != "Home") {
+    addTodoItemToKey(key);
+    addTodoItemToKey("Home");
+  } else if (key == "Home") {
+    addTodoItemToKey(key);
+  }
+  function addTodoItemToKey(key) {
+    const proj = JSON.parse(localStorage.getItem(key));
+    const todosArray = proj.todos;
+    todosArray.push(todo);
 
-  localStorage.setItem(
-    key,
-    JSON.stringify({ title: proj.title, todos: todosArray })
-  );
+    localStorage.setItem(
+      key,
+      JSON.stringify({ title: proj.title, todos: todosArray })
+    );
+  }
 }
 
 export function getTodosFromSelectedProject(key) {
