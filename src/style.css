@@ -20,7 +20,7 @@ html {
   --extra-medium: #3d4567;
   --medium: #5e6c99;
   --light: #abb3ce;
-  --extra-light: #ebecf3;
+  --extra-light: #e0e1e9;
   --lightest: #f5f6fa;
   --medium-gray: #d0d0d0;
   --dark-gray: rgb(160, 160, 160);
@@ -359,7 +359,7 @@ form button[type="submit"]:active {
 
 .main {
   padding: 2rem;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .main-heading {
@@ -374,6 +374,71 @@ form button[type="submit"]:active {
   text-align: center;
   border-bottom: 0.3rem solid var(--extra-medium);
   padding: 1rem;
+}
+
+#todosContainer {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.todoContainer,
+.todo-right,
+.todo-left {
+  display: flex;
+  align-items: center;
+}
+
+.todo-right,
+.todo-left {
+  gap: 2rem;
+}
+
+.todoContainer {
+  justify-content: space-between;
+  font-size: 2rem;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--extra-light);
+  border-radius: 1rem;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.todoContainer:hover {
+  box-shadow: 5px 5px 11px rgba(33, 33, 33, 0.2);
+  transform: scale(1.01);
+}
+
+input[type="checkbox"] {
+  size: 2rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+.todo-right button {
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  border: 1px solid var(--medium);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  color: var(--medium);
+  background-color: var(--extra-light);
+  font-weight: bold;
+}
+
+.todo-right button:hover {
+  background-color: var(--medium);
+  color: var(--extra-light);
+}
+
+.todo-right i {
+  cursor: pointer;
+}
+
+.todo-right i:hover {
+  color: var(--medium);
+  transform: scale(1.1);
 }
 
 /* Footer */
