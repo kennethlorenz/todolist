@@ -1,6 +1,5 @@
 import ProjectClass from "./classes/ProjectClass";
 import Todo from "./classes/Todo";
-import project from "./project";
 export function createProject(projectName) {
   const newProject = new ProjectClass(projectName);
   localStorage.setItem(projectName, JSON.stringify(newProject));
@@ -9,7 +8,7 @@ export function createProject(projectName) {
 export function getProjects() {
   const allKeys = Object.keys(localStorage);
   const projects = [];
-  allKeys.map((key) => {
+  allKeys.sort().map((key) => {
     const item = JSON.parse(localStorage.getItem(key));
     projects.push(item);
   });
@@ -33,22 +32,14 @@ export function deleteProjectFromLocalStorage(projectName) {
 
 export function createTodo(key, title, details, dueDate, priority) {
   const todo = new Todo(title, details, dueDate, priority);
-  if (key != "Home") {
-    addTodoItemToKey(key);
-    addTodoItemToKey("Home");
-  } else if (key == "Home") {
-    addTodoItemToKey(key);
-  }
-  function addTodoItemToKey(key) {
-    const proj = JSON.parse(localStorage.getItem(key));
-    const todosArray = proj.todos;
-    todosArray.push(todo);
+  const proj = JSON.parse(localStorage.getItem(key));
+  const todosArray = proj.todos;
+  todosArray.push(todo);
 
-    localStorage.setItem(
-      key,
-      JSON.stringify({ title: proj.title, todos: todosArray })
-    );
-  }
+  localStorage.setItem(
+    key,
+    JSON.stringify({ title: proj.title, todos: todosArray })
+  );
 }
 
 export function getTodosFromSelectedProject(key) {
