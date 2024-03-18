@@ -47,7 +47,8 @@ export function renderAllTodos() {
           item.details,
           item.dueDate,
           item.priority,
-          item.checked
+          item.checked,
+          item.index
         );
         addTodoToMain(key, todo);
       });
@@ -62,9 +63,10 @@ export function renderAllTodos() {
             item.details,
             item.dueDate,
             item.priority,
-            item.checked
+            item.checked,
+            item.index
           );
-          addTodoToMain(key, todo);
+          addTodoToMain(project.title, todo);
         });
       });
     }
