@@ -3,6 +3,7 @@ export default function todoItem(projectName, todo) {
   const container = document.createElement("div");
   container.classList.add("todoContainer");
   container.dataset.id = projectName;
+  container.dataset.index = todo.index;
 
   const firstSection = document.createElement("div");
   firstSection.classList.add("todo-left");
