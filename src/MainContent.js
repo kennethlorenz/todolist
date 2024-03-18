@@ -1,4 +1,7 @@
-import { getTodosFromSelectedProject } from "./LocalStorageManager";
+import {
+  getProjects,
+  getTodosFromSelectedProject,
+} from "./LocalStorageManager";
 import todoItem from "./TodoItem";
 export default function mainContent(projectName) {
   const mainDiv = document.createElement("div");
@@ -29,28 +32,42 @@ export function renderMainContent(project) {
 
 export function renderAllTodos() {
   const key = document.querySelector(".project.selected").dataset.id;
-  let projectTodos;
 
   if (getTodosFromSelectedProject(key) == null) {
     return;
   } else {
-    projectTodos = getTodosFromSelectedProject(key);
+    //if the selected item is not Home, Render all the todos on that project.
+    if (key != "Home") {
+      let projectTodos;
+      projectTodos = getTodosFromSelectedProject(key);
+      projectTodos.forEach((item) => {
+        addTodoToMain(
+          key,
+          item.title,
+          item.details,
+          item.dueDate,
+          item.priority,
+          item.checked
+        );
+      });
+    }
+    //if the selected item is Home, render All todos of Home project as well as the other projects.
+    else if (key == "Home") {
+      let projects = getProjects();
+      projects.sort().forEach((project) => {
+        project.todos.forEach((item) => {
+          addTodoToMain(
+            key,
+            item.title,
+            item.details,
+            item.dueDate,
+            item.priority,
+            item.checked
+          );
+        });
+      });
+    }
   }
-  //const projectTodos = getTodosFromSelectedProject(key);
-  projectTodos.forEach((item) => {
-    console.log(
-      `Title: ${item.title}, Details: ${item.details}, DueDate: ${item.dueDate}, Priority: ${item.priorty}, Checked: ${item.checked} `
-    );
-
-    addTodoToMain(
-      key,
-      item.title,
-      item.details,
-      item.dueDate,
-      item.priority,
-      item.checked
-    );
-  });
 }
 
 export function addTodoToMain(key, title, details, dueDate, priority, checked) {
