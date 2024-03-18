@@ -1,5 +1,4 @@
 import ProjectClass from "./classes/ProjectClass";
-import Todo from "./classes/Todo";
 export function createProject(projectName) {
   const newProject = new ProjectClass(projectName);
   localStorage.setItem(projectName, JSON.stringify(newProject));
@@ -39,6 +38,13 @@ export function createTodo(key, todo) {
     key,
     JSON.stringify({ title: proj.title, todos: todosArray })
   );
+}
+
+export function getIndex(key) {
+  const proj = JSON.parse(localStorage.getItem(key));
+  const todosArray = proj.todos;
+
+  return todosArray.length;
 }
 
 export function getTodosFromSelectedProject(key) {
