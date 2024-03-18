@@ -1,5 +1,5 @@
 import { closeModal } from "./CreateModalDOM";
-import { createTodo } from "./LocalStorageManager";
+import { createTodo, getIndex } from "./LocalStorageManager";
 import { addTodoToMain } from "./MainContent";
 import Todo from "./classes/Todo";
 const todoForm = document.createElement("form");
@@ -107,8 +107,9 @@ todoForm.addEventListener("submit", (e) => {
   const priority = Array.from(document.getElementsByName("priority")).find(
     (e) => e.checked
   ).value;
+  const index = getIndex(key);
 
-  const todo = new Todo(title, details, dueDate, priority);
+  const todo = new Todo(title, details, dueDate, priority, false, index);
   addTodo(key, todo);
   closeModal();
 });
