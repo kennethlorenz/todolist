@@ -1,14 +1,8 @@
 import { format } from "date-fns";
-export default function todoItem(
-  projectName,
-  title,
-  details,
-  dueDate,
-  priority,
-  checked
-) {
+export default function todoItem(projectName, todo) {
   const container = document.createElement("div");
   container.classList.add("todoContainer");
+  container.dataset.id = projectName;
 
   const firstSection = document.createElement("div");
   firstSection.classList.add("todo-left");
@@ -16,10 +10,10 @@ export default function todoItem(
   const todoCheckbox = document.createElement("input");
   todoCheckbox.type = "checkbox";
   todoCheckbox.name = "todo";
-  todoCheckbox.checked = checked;
+  todoCheckbox.checked = todo.checked;
   const todoLabel = document.createElement("label");
   todoLabel.htmlFor = "todo";
-  todoLabel.textContent = title;
+  todoLabel.textContent = todo.title;
 
   firstSection.appendChild(todoCheckbox);
   firstSection.appendChild(todoLabel);
@@ -34,7 +28,7 @@ export default function todoItem(
   detailsButton.textContent = "DETAILS";
   const todoDueDate = document.createElement("p");
   todoDueDate.classList.add("todo-duedate");
-  todoDueDate.textContent = format(dueDate, "MMM do");
+  todoDueDate.textContent = format(todo.dueDate, "MMM do");
   const editTodoButton = document.createElement("i");
   editTodoButton.classList.add("fa-regular");
   editTodoButton.classList.add("fa-pen-to-square");
@@ -49,7 +43,7 @@ export default function todoItem(
 
   container.appendChild(secondSection);
 
-  container.style.borderLeft = `1rem solid ${borderLeftColor(priority)}`;
+  container.style.borderLeft = `1rem solid ${borderLeftColor(todo.priority)}`;
 
   return container;
 }

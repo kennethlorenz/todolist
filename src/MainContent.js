@@ -3,6 +3,7 @@ import {
   getTodosFromSelectedProject,
 } from "./LocalStorageManager";
 import todoItem from "./TodoItem";
+import Todo from "./classes/Todo";
 export default function mainContent(projectName) {
   const mainDiv = document.createElement("div");
   mainDiv.classList.add("main");
@@ -41,14 +42,14 @@ export function renderAllTodos() {
       let projectTodos;
       projectTodos = getTodosFromSelectedProject(key);
       projectTodos.forEach((item) => {
-        addTodoToMain(
-          key,
+        const todo = new Todo(
           item.title,
           item.details,
           item.dueDate,
           item.priority,
           item.checked
         );
+        addTodoToMain(key, todo);
       });
     }
     //if the selected item is Home, render All todos of Home project as well as the other projects.
@@ -56,22 +57,22 @@ export function renderAllTodos() {
       let projects = getProjects();
       projects.sort().forEach((project) => {
         project.todos.forEach((item) => {
-          addTodoToMain(
-            key,
+          const todo = new Todo(
             item.title,
             item.details,
             item.dueDate,
             item.priority,
             item.checked
           );
+          addTodoToMain(key, todo);
         });
       });
     }
   }
 }
 
-export function addTodoToMain(key, title, details, dueDate, priority, checked) {
+export function addTodoToMain(key, todo) {
   const todosContainer = document.querySelector("#todosContainer");
-  const todo = todoItem(key, title, details, dueDate, priority, checked);
-  todosContainer.appendChild(todo);
+  const todoNode = todoItem(key, todo);
+  todosContainer.appendChild(todoNode);
 }
