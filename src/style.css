@@ -360,6 +360,8 @@ form button[type="submit"]:active {
 .main {
   padding: 2rem;
   flex-direction: column;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .main-heading {
@@ -381,6 +383,8 @@ form button[type="submit"]:active {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .todoContainer,
@@ -393,6 +397,11 @@ form button[type="submit"]:active {
 .todo-right,
 .todo-left {
   gap: 2rem;
+}
+
+.todo-right {
+  width: 35rem;
+  justify-content: space-around;
 }
 
 .todoContainer {
