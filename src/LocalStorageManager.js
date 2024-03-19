@@ -59,3 +59,13 @@ export function getTodosFromSelectedProject(key) {
   const todos = selectedProject.todos;
   return todos;
 }
+
+export function deleteTodoFromLocalStorage(key, index) {
+  const proj = JSON.parse(localStorage.getItem(key));
+  const todosArray = proj.todos;
+  todosArray.splice(index, 1);
+  localStorage.setItem(
+    key,
+    JSON.stringify({ title: proj.title, todos: todosArray })
+  );
+}
