@@ -1,6 +1,7 @@
 import {
   getProjects,
   getTodosFromSelectedProject,
+  deleteTodoFromLocalStorage,
 } from "./LocalStorageManager";
 import todoItem from "./TodoItem";
 import Todo from "./classes/Todo";
@@ -77,4 +78,11 @@ export function addTodoToMain(key, todo) {
   const todosContainer = document.querySelector("#todosContainer");
   const todoNode = todoItem(key, todo);
   todosContainer.appendChild(todoNode);
+}
+
+export function removeTodo(key, index) {
+  const todoItem = document.querySelector(
+    `[data-id="${key}"][data-index="${index}"]`
+  );
+  todoItem.remove();
 }
