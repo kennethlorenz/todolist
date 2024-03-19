@@ -1,4 +1,6 @@
 import { format } from "date-fns";
+import { removeTodo } from "./MainContent";
+import { deleteTodoFromLocalStorage } from "./LocalStorageManager";
 export default function todoItem(projectName, todo) {
   const container = document.createElement("div");
   container.classList.add("todoContainer");
@@ -45,6 +47,13 @@ export default function todoItem(projectName, todo) {
   container.appendChild(secondSection);
 
   container.style.borderLeft = `1rem solid ${borderLeftColor(todo.priority)}`;
+
+  deleteTodoButton.addEventListener("click", () => {
+    const key = container.dataset.id;
+    const index = container.dataset.index;
+    removeTodo(key, index);
+    deleteTodoFromLocalStorage(key, index);
+  });
 
   return container;
 }
