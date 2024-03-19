@@ -3,7 +3,7 @@ import {
   getProjects,
   deleteProjectFromLocalStorage,
 } from "./LocalStorageManager";
-import { renderMainContent } from "./MainContent";
+import { renderMainContent, renderAllTodos } from "./MainContent";
 
 const projectsContainer = document.querySelector(".projects");
 const homeButton = document.querySelector("#home.project");
@@ -39,10 +39,10 @@ export function highlightSelectedProject(project) {
 }
 
 export function deleteProject(projectId, projectName) {
-  setSelectedProject(homeButton);
   const projectToDelete = document.querySelector(`[data-id='${projectId}']`);
   projectsContainer.removeChild(projectToDelete);
   deleteProjectFromLocalStorage(projectName);
+  setSelectedProject(homeButton);
 }
 
 export function setSelectedProject(projectName) {
