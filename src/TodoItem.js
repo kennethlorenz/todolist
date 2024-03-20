@@ -7,6 +7,7 @@ import {
 export default function todoItem(projectName, todo) {
   const container = document.createElement("div");
   container.classList.add("todoContainer");
+  container.classList.add(todo.checked ? "checked" : null);
   container.dataset.id = projectName;
   container.dataset.index = todo.index;
 
