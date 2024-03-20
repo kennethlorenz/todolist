@@ -1,6 +1,9 @@
 import { format } from "date-fns";
 import { removeTodo } from "./MainContent";
-import { deleteTodoFromLocalStorage } from "./LocalStorageManager";
+import {
+  deleteTodoFromLocalStorage,
+  updateTodoCheckFromLocalStorage,
+} from "./LocalStorageManager";
 export default function todoItem(projectName, todo) {
   const container = document.createElement("div");
   container.classList.add("todoContainer");
@@ -47,13 +50,32 @@ export default function todoItem(projectName, todo) {
   container.appendChild(secondSection);
 
   container.style.borderLeft = `1rem solid ${borderLeftColor(todo.priority)}`;
+  const key = container.dataset.id;
+  const index = container.dataset.index;
 
   deleteTodoButton.addEventListener("click", () => {
-    const key = container.dataset.id;
-    const index = container.dataset.index;
     removeTodo(key, index);
     deleteTodoFromLocalStorage(key, index);
   });
+
+  todoCheckbox.addEventListener("change", () => {
+    if (todoCheckbox.checked) {
+      updateTodoCheckFromLocalStorage(key, index, true);
+      addBlur();
+    } else {
+      updateTodoCheckFromLocalStorage(key, index, false);
+      removeBlur();
+    }
+  });
+
+  function addBlur() {
+    container.classList.add("checked");
+    detailsButton.classList.add("checked");
+  }
+  function removeBlur() {
+    container.classList.remove("checked");
+    detailsButton.classList.remove("checked");
+  }
 
   return container;
 }
