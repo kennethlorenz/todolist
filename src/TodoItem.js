@@ -32,6 +32,7 @@ export default function todoItem(projectName, todo) {
 
   const detailsButton = document.createElement("button");
   detailsButton.classList.add("todo-details");
+  detailsButton.classList.add(todo.checked ? "checked" : null);
   detailsButton.textContent = "DETAILS";
   const todoDueDate = document.createElement("p");
   todoDueDate.classList.add("todo-duedate");
