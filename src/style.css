@@ -411,7 +411,7 @@ form button[type="submit"]:active {
   padding: 1.5rem;
   background-color: var(--extra-light);
   border-radius: 1rem;
-  transition: box-shadow 0.3s, transform 0.3s;
+  transition: box-shadow 0.3s, transform 0.3s, color 0.3s;
 }
 
 .todoContainer:hover {
@@ -423,6 +423,7 @@ input[type="checkbox"] {
   size: 2rem;
   height: 2rem;
   width: 2rem;
+  accent-color: var(--medium);
 }
 
 .todo-right button {
@@ -434,6 +435,11 @@ input[type="checkbox"] {
   color: var(--medium);
   background-color: var(--extra-light);
   font-weight: bold;
+}
+
+.todo-right button.checked {
+  border-color: rgba(0, 0, 0, 0.35);
+  color: rgba(0, 0, 0, 0.35);
 }
 
 .todo-right button:hover {
@@ -448,6 +454,11 @@ input[type="checkbox"] {
 .todo-right i:hover {
   color: var(--medium);
   transform: scale(1.1);
+}
+
+.checked {
+  color: rgba(0, 0, 0, 0.35);
+  transition: color 0.3s;
 }
 
 /* Footer */
