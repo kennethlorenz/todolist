@@ -69,3 +69,14 @@ export function deleteTodoFromLocalStorage(key, index) {
     JSON.stringify({ title: proj.title, todos: todosArray })
   );
 }
+
+export function updateTodoCheckFromLocalStorage(key, index, checkedValue) {
+  const proj = JSON.parse(localStorage.getItem(key));
+  const todoToUpdate = proj.todos[index];
+  todoToUpdate.checked = checkedValue;
+  console.log(todoToUpdate.checked);
+  localStorage.setItem(
+    key,
+    JSON.stringify({ title: proj.title, todos: proj.todos })
+  );
+}
