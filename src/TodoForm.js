@@ -1,4 +1,4 @@
-import { closeModal } from "./CreateScreen";
+import { closeCreateModal } from "./CreateScreen";
 import { createTodo, getIndex } from "./LocalStorageManager";
 import { addTodoToMain } from "./MainContent";
 import Todo from "./classes/Todo";
@@ -48,30 +48,30 @@ priorityLabel.textContent = "Priority :";
 
 const lowRadioButton = document.createElement("input");
 lowRadioButton.type = "radio";
-lowRadioButton.id = "low";
+lowRadioButton.id = "Low";
 lowRadioButton.name = "priority";
 lowRadioButton.required = true;
-lowRadioButton.value = "low";
+lowRadioButton.value = "Low";
 const lowRadioLabel = document.createElement("label");
-lowRadioLabel.htmlFor = "low";
+lowRadioLabel.htmlFor = "Low";
 lowRadioLabel.textContent = "Low";
 
 const mediumRadioButton = document.createElement("input");
 mediumRadioButton.type = "radio";
-mediumRadioButton.id = "medium";
+mediumRadioButton.id = "Medium";
 mediumRadioButton.name = "priority";
-mediumRadioButton.value = "medium";
+mediumRadioButton.value = "Medium";
 const mediumRadioLabel = document.createElement("label");
-mediumRadioLabel.htmlFor = "medium";
+mediumRadioLabel.htmlFor = "Medium";
 mediumRadioLabel.textContent = "Medium";
 
 const highRadioButton = document.createElement("input");
 highRadioButton.type = "radio";
-highRadioButton.id = "high";
+highRadioButton.id = "High";
 highRadioButton.name = "priority";
-highRadioButton.value = "high";
+highRadioButton.value = "High";
 const highRadioLabel = document.createElement("label");
-highRadioLabel.htmlFor = "high";
+highRadioLabel.htmlFor = "High";
 highRadioLabel.textContent = "High";
 
 const submitBtn = document.createElement("button");
@@ -111,7 +111,7 @@ todoForm.addEventListener("submit", (e) => {
 
   const todo = new Todo(title, details, dueDate, priority, false, index);
   addTodo(key, todo);
-  closeModal();
+  closeCreateModal();
 });
 
 function addTodo(key, todo) {
