@@ -1,4 +1,4 @@
-import { closeModal } from "./CreateModalDOM";
+import { closeModal } from "./CreateScreen";
 import { createTodo, getIndex } from "./LocalStorageManager";
 import { addTodoToMain } from "./MainContent";
 import Todo from "./classes/Todo";
