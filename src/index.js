@@ -1,5 +1,5 @@
-import createModalDOM from "./CreateModalDOM";
+import createScreen from "./CreateScreen";
 import renderProjectsOnSidebar from "./SidebarDOM";
 
-createModalDOM();
+createScreen();
 renderProjectsOnSidebar();
