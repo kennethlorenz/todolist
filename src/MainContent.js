@@ -1,7 +1,6 @@
 import {
   getProjects,
   getTodosFromSelectedProject,
-  deleteTodoFromLocalStorage,
 } from "./LocalStorageManager";
 import todoItem from "./TodoItem";
 import Todo from "./classes/Todo";
@@ -27,7 +26,7 @@ export default function mainContent(projectName) {
 
 export function renderMainContent(project) {
   let body = document.querySelector("body");
-  body.replaceChild(mainContent(project.dataset.id), body.children[3]);
+  body.replaceChild(mainContent(project.dataset.id), body.children[4]);
   //mainDiv.replaceChildren(MainContent(project.dataset.id));
   renderAllTodos();
 }
