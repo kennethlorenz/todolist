@@ -4,6 +4,8 @@ import {
   deleteTodoFromLocalStorage,
   updateTodoCheckFromLocalStorage,
 } from "./LocalStorageManager";
+import displayDetailsScreen from "./DetailsScreen";
+
 export default function todoItem(projectName, todo) {
   const container = document.createElement("div");
   container.classList.add("todoContainer");
@@ -68,6 +70,10 @@ export default function todoItem(projectName, todo) {
       updateTodoCheckFromLocalStorage(key, index, false);
       removeBlur();
     }
+  });
+
+  detailsButton.addEventListener("click", () => {
+    displayDetailsScreen(key, todo);
   });
 
   function addBlur() {
