@@ -14,11 +14,11 @@ const closeButton = document.querySelector(".close");
 
 const modalMainContent = document.querySelector(".modal-main");
 
-export default function createModalDOM() {
+export default function createScreen() {
   modalMainContent.appendChild(renderTodoForm());
 }
 
-export function closeModal() {
+export function closeCreateModal() {
   updateContent(renderTodoForm(), todo);
   closeModal(modal, modalContent);
   clearCreateProjectForm();
@@ -60,5 +60,5 @@ addButton.addEventListener("click", () => {
 });
 
 modalCloseBtn.addEventListener("click", () => {
-  closeModal();
+  closeCreateModal();
 });
