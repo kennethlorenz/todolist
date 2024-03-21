@@ -56,6 +56,10 @@ header {
   align-items: center;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 header,
 .sidebar,
 .projects,
@@ -183,12 +187,34 @@ footer,
   transition: 02s ease-in-out;
 }
 
+#detailsContent {
+  background-color: #fefefe;
+  width: 80rem;
+  height: 32.5rem;
+  margin: auto;
+}
+
+#detail {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+#todoTitle {
+  font-size: 5rem;
+}
+
+.detail-content {
+  display: flex;
+  padding: 0.5rem;
+  gap: 1rem;
+}
+
 .modal-content header {
   font-size: 2rem;
   grid-area: header;
 }
 
-.modal-content .close {
+.close {
   font-size: 4rem;
   margin-left: auto;
   cursor: pointer;
@@ -205,7 +231,7 @@ footer,
   padding: 1rem 2rem;
 }
 
-.modal-content .close:hover {
+.close:hover {
   color: black;
 }
 
