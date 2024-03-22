@@ -77,7 +77,7 @@ highRadioLabel.textContent = "High";
 const submitBtn = document.createElement("button");
 submitBtn.type = "submit";
 submitBtn.id = "addTodo";
-submitBtn.textContent = "Add To Do";
+submitBtn.textContent = "Submit";
 
 secondChildDiv.appendChild(priorityLabel);
 secondChildDiv.appendChild(lowRadioButton);
@@ -92,11 +92,26 @@ secondDiv.appendChild(secondChildDiv);
 
 todoForm.appendChild(secondDiv);
 export default function renderTodoForm() {
+  clearTodoForm();
+  submitBtn.addEventListener("click", add);
   return todoForm;
 }
 
-todoForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+export function renderEditTodoForm(todo) {
+  submitBtn.removeEventListener("click", add);
+  const radio = document.getElementById(todo.priority);
+  titleInput.value = todo.title;
+  detailsTextArea.value = todo.details;
+  dateInput.value = todo.dueDate;
+  radio.checked = true;
+  submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
+
+  return todoForm;
+}
+
+function add() {
   if (isFormValid() == false) {
     return;
   }
@@ -112,7 +127,7 @@ todoForm.addEventListener("submit", (e) => {
   const todo = new Todo(title, details, dueDate, priority, false, index);
   addTodo(key, todo);
   closeCreateModal();
-});
+}
 
 function addTodo(key, todo) {
   createTodo(key, todo);
