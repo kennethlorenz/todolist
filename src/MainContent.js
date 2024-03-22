@@ -26,7 +26,7 @@ export default function mainContent(projectName) {
 
 export function renderMainContent(project) {
   let body = document.querySelector("body");
-  body.replaceChild(mainContent(project.dataset.id), body.children[4]);
+  body.replaceChild(mainContent(project.dataset.id), body.children[5]);
   //mainDiv.replaceChildren(MainContent(project.dataset.id));
   renderAllTodos();
 }
