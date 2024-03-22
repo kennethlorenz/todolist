@@ -187,11 +187,17 @@ footer,
   transition: 02s ease-in-out;
 }
 
+.content {
+  margin: auto;
+  background-color: var(--lightest);
+}
 #detailsContent {
-  background-color: #fefefe;
   width: 80rem;
   height: 32.5rem;
-  margin: auto;
+}
+#editTodoContent {
+  width: 70rem;
+  height: 47.5rem;
 }
 
 #detail {
@@ -330,13 +336,13 @@ input[type="radio"] {
   accent-color: var(--medium);
 }
 
-label[for="low"] {
+label[for="Low"] {
   color: green;
 }
-label[for="medium"] {
+label[for="Medium"] {
   color: rgb(216, 140, 0);
 }
-label[for="high"] {
+label[for="High"] {
   color: rgb(214, 0, 0);
 }
 
