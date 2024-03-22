@@ -5,6 +5,8 @@ import {
   updateTodoCheckFromLocalStorage,
 } from "./LocalStorageManager";
 import displayDetailsScreen from "./DetailsScreen";
+import { renderEditTodoForm } from "./TodoForm";
+import { closeModal, openModal } from "./ModalHandler";
 
 export default function todoItem(projectName, todo) {
   const container = document.createElement("div");
@@ -85,13 +87,29 @@ export default function todoItem(projectName, todo) {
     detailsButton.classList.remove("checked");
   }
 
+  editTodoButton.addEventListener("click", () => {
+    console.log("edit clicked");
+    displayEditTodoScreen(todo);
+  });
+
   return container;
 }
 
+function displayEditTodoScreen(todo) {
+  const editCloseButton = document.querySelector("#editTodoContent .close");
+  const editTodoContent = document.getElementById("editTodoContent");
+  const editTodoModal = document.getElementById("editTodoModal");
+  editTodoContent.appendChild(renderEditTodoForm(todo));
+  openModal(editTodoModal, editTodoContent);
+  editCloseButton.addEventListener("click", () => {
+    closeModal(editTodoModal, editTodoContent);
+  });
+}
+
 function borderLeftColor(priority) {
-  if (priority == "high") {
+  if (priority == "High") {
     return "red";
-  } else if (priority == "medium") {
+  } else if (priority == "Medium") {
     return "yellow";
   } else {
     return "green";
