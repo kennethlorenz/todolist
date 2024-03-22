@@ -8,7 +8,7 @@ export default function displayDetailsScreen(key, todo) {
   const projectName = document.getElementById("projectName");
   const priority = document.getElementById("priority");
   const dueDate = document.getElementById("dueDate");
-  const details = document.getElementById("details");
+  const details = document.querySelector(".detail-content #details");
 
   title.textContent = todo.title;
   projectName.textContent = key;
