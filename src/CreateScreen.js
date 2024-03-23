@@ -57,7 +57,6 @@ function setActiveModal(selectedItem) {
 
 addButton.addEventListener("click", () => {
   openModal(modal, modalContent);
-  clearTodoForm();
   updateContent(renderTodoForm(), todo);
 });
 
