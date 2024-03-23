@@ -89,17 +89,17 @@ export default function todoItem(projectName, todo) {
 
   editTodoButton.addEventListener("click", () => {
     console.log("edit clicked");
-    displayEditTodoScreen(todo);
+    displayEditTodoScreen(key, index, todo);
   });
 
   return container;
 }
 
-function displayEditTodoScreen(todo) {
+function displayEditTodoScreen(key, index, todo) {
   const editCloseButton = document.querySelector("#editTodoContent .close");
   const editTodoContent = document.getElementById("editTodoContent");
   const editTodoModal = document.getElementById("editTodoModal");
-  editTodoContent.appendChild(renderEditTodoForm(todo));
+  editTodoContent.appendChild(renderEditTodoForm(key, index, todo));
   openModal(editTodoModal, editTodoContent);
   editCloseButton.addEventListener("click", () => {
     closeModal(editTodoModal, editTodoContent);
