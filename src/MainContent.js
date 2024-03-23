@@ -85,3 +85,12 @@ export function removeTodo(key, index) {
   );
   todoItem.remove();
 }
+
+export function updateTodoFromMain(key, index, todo) {
+  const currentTodo = document.querySelector(
+    `[data-id="${key}"][data-index="${index}"]`
+  );
+
+  const udpatedTodoItem = todoItem(key, todo);
+  currentTodo.replaceWith(udpatedTodoItem);
+}
