@@ -80,3 +80,13 @@ export function updateTodoCheckFromLocalStorage(key, index, checkedValue) {
     JSON.stringify({ title: proj.title, todos: proj.todos })
   );
 }
+
+export function updateTodoFromLocalStorage(key, index, todo) {
+  const proj = JSON.parse(localStorage.getItem(key));
+  proj.todos.splice(index, 1, todo);
+
+  localStorage.setItem(
+    key,
+    JSON.stringify({ title: proj.title, todos: proj.todos })
+  );
+}
