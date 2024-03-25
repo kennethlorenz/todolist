@@ -1,9 +1,13 @@
 import { closeCreateModal } from "./CreateScreen";
-import { createTodo, getIndex } from "./LocalStorageManager";
-import { addTodoToMain } from "./MainContent";
+import {
+  createTodo,
+  getIndex,
+  updateTodoFromLocalStorage,
+} from "./LocalStorageManager";
+import { addTodoToMain, updateTodoFromMain } from "./MainContent";
+import { closeModal } from "./ModalHandler";
 import Todo from "./classes/Todo";
 const todoForm = document.createElement("form");
-todoForm.method = "post";
 todoForm.id = "addTodoForm";
 
 const firstDiv = document.createElement("div");
@@ -91,24 +95,76 @@ secondChildDiv.appendChild(submitBtn);
 secondDiv.appendChild(secondChildDiv);
 
 todoForm.appendChild(secondDiv);
+
+let keyE;
+let indexE;
+let checked;
 export default function renderTodoForm() {
+  submitBtn.removeEventListener("click", edit);
+  keyE = "";
+  indexE = "";
+  checked = false;
   clearTodoForm();
   submitBtn.addEventListener("click", add);
   return todoForm;
 }
 
-export function renderEditTodoForm(todo) {
+export function renderEditTodoForm(key, index, todo) {
   submitBtn.removeEventListener("click", add);
+  populateEditForm(todo);
+  console.log(`outside submit ${key} ${index}`);
+  setGlobalVariables(key, index, todo.checked);
+  submitBtn.addEventListener("click", edit);
+
+  return todoForm;
+}
+
+function populateEditForm(todo) {
   const radio = document.getElementById(todo.priority);
   titleInput.value = todo.title;
   detailsTextArea.value = todo.details;
   dateInput.value = todo.dueDate;
   radio.checked = true;
-  submitBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-  });
+}
 
-  return todoForm;
+const edit = (e) => {
+  e.preventDefault();
+  console.log(`after submit 1 ${keyE} ${indexE}`);
+  const modal = document.getElementById("editTodoModal");
+  const content = document.getElementById("editTodoContent");
+  if (isFormValid() == false) {
+    return;
+  }
+
+  let title = titleInput.value;
+  let details = detailsTextArea.value;
+  let dueDate = dateInput.value;
+  let priority = Array.from(document.getElementsByName("priority")).find(
+    (e) => e.checked
+  ).value;
+  let checked = todo.checked;
+  let updatedTodo = new Todo(
+    title,
+    details,
+    dueDate,
+    priority,
+    checked,
+    indexE
+  );
+  console.log(`after submit 2${keyE} ${indexE}`);
+  submitEditTodoForm(keyE, indexE, updatedTodo);
+  closeModal(modal, content);
+};
+
+function submitEditTodoForm(key, index, todo) {
+  updateTodoFromLocalStorage(key, index, todo);
+  updateTodoFromMain(key, index, todo);
+}
+
+function setGlobalVariables(key, index, checked) {
+  keyE = key;
+  indexE = index;
+  checked = checked;
 }
 
 function add() {
