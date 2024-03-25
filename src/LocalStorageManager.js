@@ -90,3 +90,9 @@ export function updateTodoFromLocalStorage(key, index, todo) {
     JSON.stringify({ title: proj.title, todos: proj.todos })
   );
 }
+
+export function getTodoFromProject(key, index) {
+  const proj = JSON.parse(localStorage.getItem(key));
+  const todo = proj.todos[index];
+  return todo;
+}
