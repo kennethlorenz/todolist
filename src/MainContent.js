@@ -90,7 +90,8 @@ export function updateTodoFromMain(key, index, todo) {
   const currentTodo = document.querySelector(
     `[data-id="${key}"][data-index="${index}"]`
   );
-
-  const udpatedTodoItem = todoItem(key, todo);
-  currentTodo.replaceWith(udpatedTodoItem);
+  console.log(currentTodo);
+  const updatedTodoItem = todoItem(key, todo);
+  console.log(updatedTodoItem);
+  currentTodo.parentNode.replaceChild(updatedTodoItem, currentTodo);
 }
