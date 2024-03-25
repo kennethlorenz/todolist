@@ -96,7 +96,7 @@ export default function todoItem(projectName, todo) {
   return container;
 }
 
-function displayEditTodoScreen(key, index, todo) {
+function displayEditTodoScreen(key, index) {
   const editCloseButton = document.querySelector("#editTodoContent .close");
   const editTodoContent = document.getElementById("editTodoContent");
   const editTodoModal = document.getElementById("editTodoModal");
