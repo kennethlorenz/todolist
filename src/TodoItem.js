@@ -7,6 +7,7 @@ import {
 import displayDetailsScreen from "./DetailsScreen";
 import { renderEditTodoForm } from "./TodoForm";
 import { closeModal, openModal } from "./ModalHandler";
+import { getTodoFromProject } from "./LocalStorageManager";
 
 export default function todoItem(projectName, todo) {
   const container = document.createElement("div");
@@ -99,7 +100,9 @@ function displayEditTodoScreen(key, index, todo) {
   const editCloseButton = document.querySelector("#editTodoContent .close");
   const editTodoContent = document.getElementById("editTodoContent");
   const editTodoModal = document.getElementById("editTodoModal");
-  editTodoContent.appendChild(renderEditTodoForm(key, index, todo));
+  const editMain = document.getElementById("editMain");
+  const todoToUpdate = getTodoFromProject(key, index);
+  editMain.replaceChildren(renderEditTodoForm(key, index, todoToUpdate));
   openModal(editTodoModal, editTodoContent);
   editCloseButton.addEventListener("click", () => {
     closeModal(editTodoModal, editTodoContent);
