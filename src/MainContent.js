@@ -17,6 +17,22 @@ export default function mainContent(projectName) {
   const todosContainer = document.createElement("div");
   todosContainer.id = "todosContainer";
 
+  const container = document.createElement("div");
+  container.id = "empty";
+  container.style.display = "none";
+  const pTag = document.createElement("p");
+  pTag.textContent = "Empty Project!";
+  const pTag2 = document.createElement("p");
+  pTag2.textContent = "Create a New to-do item or Delete Project";
+
+  const deleteProjectButton = document.createElement("button");
+  deleteProjectButton.textContent = "Delete Project";
+
+  container.appendChild(pTag);
+  container.appendChild(pTag2);
+  container.appendChild(deleteProjectButton);
+  todosContainer.appendChild(container);
+
   mainHeadingDiv.appendChild(projectTitle);
 
   mainDiv.appendChild(mainHeadingDiv);
@@ -33,14 +49,16 @@ export function renderMainContent(project) {
 
 export function renderAllTodos() {
   const key = document.querySelector(".project.selected").dataset.id;
-
   if (getTodosFromSelectedProject(key) == null) {
     return;
   } else {
     //if the selected item is not Home, Render all the todos on that project.
     if (key != "Home") {
-      let projectTodos;
-      projectTodos = getTodosFromSelectedProject(key);
+      let projectTodos = getTodosFromSelectedProject(key);
+      if (projectTodos.length == 0) {
+        console.log("TEST");
+        showEmptyProjectMessage();
+      }
       projectTodos.forEach((item) => {
         const todo = new Todo(
           item.title,
@@ -55,6 +73,7 @@ export function renderAllTodos() {
     }
     //if the selected item is Home, render All todos of Home project as well as the other projects.
     else if (key == "Home") {
+      hideEmptyProjectMessage();
       let projects = getProjects();
       projects.sort().forEach((project) => {
         project.todos.forEach((item) => {
@@ -74,9 +93,20 @@ export function renderAllTodos() {
 }
 
 export function addTodoToMain(key, todo) {
+  hideEmptyProjectMessage();
   const todosContainer = document.querySelector("#todosContainer");
   const todoNode = todoItem(key, todo);
   todosContainer.appendChild(todoNode);
+}
+
+function showEmptyProjectMessage() {
+  const del = document.getElementById("empty");
+  del.style.display = "flex";
+}
+
+function hideEmptyProjectMessage() {
+  const del = document.getElementById("empty");
+  del.style.display = "none";
 }
 
 export function removeTodo(key, index) {
@@ -84,6 +114,10 @@ export function removeTodo(key, index) {
     `[data-id="${key}"][data-index="${index}"]`
   );
   todoItem.remove();
+
+  if (getTodosFromSelectedProject(key) == 0 && key != "Home") {
+    showEmptyProjectMessage();
+  }
 }
 
 export function updateTodoFromMain(key, index, todo) {
