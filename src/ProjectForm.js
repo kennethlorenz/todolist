@@ -1,5 +1,5 @@
 import { createProject, projectExists } from "./LocalStorageManager";
-import { closeModal } from "./CreateScreen";
+import { closeModal, closeCreateModal } from "./CreateScreen";
 import { addProjectToSideBar } from "./SidebarDOM";
 const projectForm = document.createElement("form");
 projectForm.id = "addProjectForm";
@@ -46,7 +46,7 @@ function createNewProject(projectName) {
   } else {
     createProject(projectName);
     addProjectToSideBar(projectName);
-    closeModal();
+    closeCreateModal();
   }
 }
 
