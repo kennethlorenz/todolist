@@ -110,12 +110,13 @@ function hideEmptyProjectMessage() {
 }
 
 export function removeTodo(key, index) {
+  const selectedProj = document.querySelector(".project.selected").dataset.id;
   const todoItem = document.querySelector(
     `[data-id="${key}"][data-index="${index}"]`
   );
   todoItem.remove();
 
-  if (getTodosFromSelectedProject(key) == 0 && key != "Home") {
+  if (getTodosFromSelectedProject(key) == 0 && selectedProj != "Home") {
     showEmptyProjectMessage();
   }
 }
