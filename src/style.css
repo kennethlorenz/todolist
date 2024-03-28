@@ -419,6 +419,20 @@ form button[type="submit"]:active {
   overflow-x: hidden;
 }
 
+#todosContainer #empty {
+  font-size: 2.5rem;
+  text-align: center;
+  flex-direction: column;
+  width: 50%;
+  align-self: center;
+  gap: 3rem;
+  padding: 2rem;
+}
+
+#todosContainer #empty button {
+  width: 30rem;
+  align-self: center;
+}
 .todoContainer,
 .todo-right,
 .todo-left {
@@ -458,7 +472,8 @@ input[type="checkbox"] {
   accent-color: var(--medium);
 }
 
-.todo-right button {
+.todo-right button,
+#empty button {
   padding: 0.5rem 1rem;
   border-radius: 3px;
   border: 1px solid var(--medium);
@@ -474,7 +489,8 @@ input[type="checkbox"] {
   color: rgba(0, 0, 0, 0.35);
 }
 
-.todo-right button:hover {
+.todo-right button:hover,
+#empty button:hover {
   background-color: var(--medium);
   color: var(--extra-light);
 }
