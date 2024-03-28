@@ -38,10 +38,10 @@ export function highlightSelectedProject(project) {
   });
 }
 
-export function deleteProject(projectId, projectName) {
+export function deleteProject(projectId) {
   const projectToDelete = document.querySelector(`[data-id='${projectId}']`);
   projectsContainer.removeChild(projectToDelete);
-  deleteProjectFromLocalStorage(projectName);
+  deleteProjectFromLocalStorage(projectId);
   setSelectedProject(homeButton);
 }
 
