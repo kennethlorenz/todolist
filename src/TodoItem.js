@@ -61,8 +61,8 @@ export default function todoItem(projectName, todo) {
   const index = container.dataset.index;
 
   deleteTodoButton.addEventListener("click", () => {
-    removeTodo(key, index);
     deleteTodoFromLocalStorage(key, index);
+    removeTodo(key, index);
   });
 
   todoCheckbox.addEventListener("change", () => {
