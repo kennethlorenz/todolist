@@ -4,6 +4,7 @@ import {
 } from "./LocalStorageManager";
 import todoItem from "./TodoItem";
 import Todo from "./classes/Todo";
+import { deleteProject } from "./SidebarDOM";
 export default function mainContent(projectName) {
   const mainDiv = document.createElement("div");
   mainDiv.classList.add("main");
@@ -37,6 +38,11 @@ export default function mainContent(projectName) {
 
   mainDiv.appendChild(mainHeadingDiv);
   mainDiv.appendChild(todosContainer);
+
+  deleteProjectButton.addEventListener("click", () => {
+    const selectedProj = document.querySelector(".project.selected").dataset.id;
+    deleteProject(selectedProj);
+  });
   return mainDiv;
 }
 
@@ -56,7 +62,6 @@ export function renderAllTodos() {
     if (key != "Home") {
       let projectTodos = getTodosFromSelectedProject(key);
       if (projectTodos.length == 0) {
-        console.log("TEST");
         showEmptyProjectMessage();
       }
       projectTodos.forEach((item) => {
