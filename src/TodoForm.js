@@ -83,6 +83,9 @@ submitBtn.type = "submit";
 submitBtn.id = "addTodo";
 submitBtn.textContent = "Submit";
 
+const checkedP = document.createElement("p");
+checkedP.style.display = "none";
+
 secondChildDiv.appendChild(priorityLabel);
 secondChildDiv.appendChild(lowRadioButton);
 secondChildDiv.appendChild(lowRadioLabel);
@@ -125,6 +128,7 @@ function populateEditForm(todo) {
   detailsTextArea.value = todo.details;
   dateInput.value = todo.dueDate;
   radio.checked = true;
+  checkedP.textContent = todo.checked;
 }
 
 const edit = (e) => {
@@ -142,7 +146,7 @@ const edit = (e) => {
   let priority = Array.from(document.getElementsByName("priority")).find(
     (e) => e.checked
   ).value;
-  let checked = todo.checked;
+  let checked = JSON.parse(checkedP.textContent.toLowerCase());
   let updatedTodo = new Todo(
     title,
     details,
