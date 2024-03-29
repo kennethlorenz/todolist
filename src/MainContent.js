@@ -58,26 +58,8 @@ export function renderAllTodos() {
   if (getTodosFromSelectedProject(key) == null) {
     return;
   } else {
-    //if the selected item is not Home, Render all the todos on that project.
-    if (key != "Home") {
-      let projectTodos = getTodosFromSelectedProject(key);
-      if (projectTodos.length == 0) {
-        showEmptyProjectMessage();
-      }
-      projectTodos.forEach((item) => {
-        const todo = new Todo(
-          item.title,
-          item.details,
-          item.dueDate,
-          item.priority,
-          item.checked,
-          item.index
-        );
-        addTodoToMain(key, todo);
-      });
-    }
     //if the selected item is Home, render All todos of Home project as well as the other projects.
-    else if (key == "Home") {
+    if (key == "Home") {
       hideEmptyProjectMessage();
       let projects = getProjects();
       projects.sort().forEach((project) => {
@@ -92,6 +74,38 @@ export function renderAllTodos() {
           );
           addTodoToMain(project.title, todo);
         });
+      });
+    } else if (key == "Today" || key == "Week") {
+      let projectTodos = getTodosFromSelectedProject(key);
+      hideEmptyProjectMessage();
+      projectTodos.forEach((item) => {
+        const todo = new Todo(
+          item.title,
+          item.details,
+          item.dueDate,
+          item.priority,
+          item.checked,
+          item.index
+        );
+        addTodoToMain(key, todo);
+      });
+    }
+    //if the selected item is not Home, Render all the todos on that project.
+    else {
+      let projectTodos = getTodosFromSelectedProject(key);
+      if (projectTodos.length == 0) {
+        showEmptyProjectMessage();
+      }
+      projectTodos.forEach((item) => {
+        const todo = new Todo(
+          item.title,
+          item.details,
+          item.dueDate,
+          item.priority,
+          item.checked,
+          item.index
+        );
+        addTodoToMain(key, todo);
       });
     }
   }
