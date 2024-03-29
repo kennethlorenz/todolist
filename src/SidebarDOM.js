@@ -7,12 +7,18 @@ import { renderMainContent, renderAllTodos } from "./MainContent";
 
 const projectsContainer = document.querySelector(".projects");
 const homeButton = document.querySelector("#home.project");
+const todayButton = document.getElementById("today");
+const weekButton = document.getElementById("week");
 
 export default function renderProjectsOnSidebar() {
   const projects = getProjects();
 
   projects.forEach((projectItem) => {
-    if (projectItem.title == "Home") {
+    if (
+      projectItem.title == "Home" ||
+      projectItem.title == "Today" ||
+      projectItem.title == "Week"
+    ) {
       return;
     }
     project(projectItem.title);
@@ -52,4 +58,12 @@ export function setSelectedProject(projectName) {
 
 homeButton.addEventListener("click", () => {
   setSelectedProject(homeButton);
+});
+
+todayButton.addEventListener("click", () => {
+  setSelectedProject(todayButton);
+});
+
+weekButton.addEventListener("click", () => {
+  setSelectedProject(weekButton);
 });
