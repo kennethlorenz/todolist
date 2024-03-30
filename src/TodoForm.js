@@ -115,7 +115,6 @@ export default function renderTodoForm() {
 export function renderEditTodoForm(key, index, todo) {
   submitBtn.removeEventListener("click", add);
   populateEditForm(todo);
-  console.log(`outside submit ${key} ${index}`);
   setGlobalVariables(key, index, todo.checked);
   submitBtn.addEventListener("click", edit);
 
@@ -133,7 +132,6 @@ function populateEditForm(todo) {
 
 const edit = (e) => {
   e.preventDefault();
-  console.log(`after submit 1 ${keyE} ${indexE}`);
   const modal = document.getElementById("editTodoModal");
   const content = document.getElementById("editTodoContent");
   if (isFormValid() == false) {
@@ -147,15 +145,7 @@ const edit = (e) => {
     (e) => e.checked
   ).value;
   let checked = JSON.parse(checkedP.textContent.toLowerCase());
-  let updatedTodo = new Todo(
-    title,
-    details,
-    dueDate,
-    priority,
-    checked,
-    indexE
-  );
-  console.log(`after submit 2${keyE} ${indexE}`);
+  let updatedTodo = new Todo(title, details, dueDate, priority, checked);
   submitEditTodoForm(keyE, indexE, updatedTodo);
   closeModal(modal, content);
 };
@@ -182,16 +172,14 @@ function add() {
   const priority = Array.from(document.getElementsByName("priority")).find(
     (e) => e.checked
   ).value;
-  const index = getIndex(key);
-
-  const todo = new Todo(title, details, dueDate, priority, false, index);
-  addTodo(key, todo);
+  const todo = new Todo(title, details, dueDate, priority, false);
+  addTodo(key, todo, getIndex(key));
   closeCreateModal();
 }
 
-function addTodo(key, todo) {
+function addTodo(key, todo, index) {
   createTodo(key, todo);
-  addTodoToMain(key, todo);
+  addTodoToMain(key, todo, index);
 }
 
 function isFormValid() {
