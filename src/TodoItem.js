@@ -9,12 +9,12 @@ import { renderEditTodoForm } from "./TodoForm";
 import { closeModal, openModal } from "./ModalHandler";
 import { getTodoFromProject } from "./LocalStorageManager";
 
-export default function todoItem(projectName, todo) {
+export default function todoItem(projectName, todo, counter) {
   const container = document.createElement("div");
   container.classList.add("todoContainer");
   container.classList.add(todo.checked ? "checked" : null);
   container.dataset.id = projectName;
-  container.dataset.index = todo.index;
+  container.dataset.index = counter;
 
   const firstSection = document.createElement("div");
   firstSection.classList.add("todo-left");
@@ -58,19 +58,20 @@ export default function todoItem(projectName, todo) {
 
   container.style.borderLeft = `1rem solid ${borderLeftColor(todo.priority)}`;
   const key = container.dataset.id;
-  const index = container.dataset.index;
 
   deleteTodoButton.addEventListener("click", () => {
-    deleteTodoFromLocalStorage(key, index);
-    removeTodo(key, index);
+    let curentIndex = container.dataset.index;
+    removeTodo(key, curentIndex);
+    deleteTodoFromLocalStorage(key, curentIndex);
   });
 
   todoCheckbox.addEventListener("change", () => {
+    let curentIndex = container.dataset.index;
     if (todoCheckbox.checked) {
-      updateTodoCheckFromLocalStorage(key, index, true);
+      updateTodoCheckFromLocalStorage(key, curentIndex, true);
       addBlur();
     } else {
-      updateTodoCheckFromLocalStorage(key, index, false);
+      updateTodoCheckFromLocalStorage(key, curentIndex, false);
       removeBlur();
     }
   });
@@ -89,8 +90,8 @@ export default function todoItem(projectName, todo) {
   }
 
   editTodoButton.addEventListener("click", () => {
-    console.log("edit clicked");
-    displayEditTodoScreen(key, index, todo);
+    let curentIndex = container.dataset.index;
+    displayEditTodoScreen(key, curentIndex, todo);
   });
 
   return container;
