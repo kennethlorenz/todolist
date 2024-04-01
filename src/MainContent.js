@@ -63,31 +63,35 @@ export function renderAllTodos() {
       hideEmptyProjectMessage();
       let projects = getProjects();
       projects.sort().forEach((project) => {
+        let counter = 0;
         project.todos.forEach((item) => {
           const todo = new Todo(
             item.title,
             item.details,
             item.dueDate,
             item.priority,
-            item.checked,
-            item.index
+            item.checked
           );
-          addTodoToMain(project.title, todo);
+          addTodoToMain(project.title, todo, counter);
+          counter += 1;
         });
       });
-    } else if (key == "Today" || key == "Week") {
+    }
+    //if today aand week is selected, hide empty project message and render todos respectively.
+    else if (key == "Today" || key == "Week") {
       let projectTodos = getTodosFromSelectedProject(key);
       hideEmptyProjectMessage();
+      let counter = 0;
       projectTodos.forEach((item) => {
         const todo = new Todo(
           item.title,
           item.details,
           item.dueDate,
           item.priority,
-          item.checked,
-          item.index
+          item.checked
         );
-        addTodoToMain(key, todo);
+        addTodoToMain(key, todo, counter);
+        counter += 1;
       });
     }
     //if the selected item is not Home, Render all the todos on that project.
@@ -96,25 +100,26 @@ export function renderAllTodos() {
       if (projectTodos.length == 0) {
         showEmptyProjectMessage();
       }
+      let counter = 0;
       projectTodos.forEach((item) => {
         const todo = new Todo(
           item.title,
           item.details,
           item.dueDate,
           item.priority,
-          item.checked,
-          item.index
+          item.checked
         );
-        addTodoToMain(key, todo);
+        addTodoToMain(key, todo, counter);
+        counter += 1;
       });
     }
   }
 }
 
-export function addTodoToMain(key, todo) {
+export function addTodoToMain(key, todo, counter) {
   hideEmptyProjectMessage();
   const todosContainer = document.querySelector("#todosContainer");
-  const todoNode = todoItem(key, todo);
+  const todoNode = todoItem(key, todo, counter);
   todosContainer.appendChild(todoNode);
 }
 
@@ -134,10 +139,19 @@ export function removeTodo(key, index) {
     `[data-id="${key}"][data-index="${index}"]`
   );
   todoItem.remove();
-
+  updateTodosIndexByProject(key);
   if (getTodosFromSelectedProject(key) == 0 && selectedProj != "Home") {
     showEmptyProjectMessage();
   }
+}
+
+function updateTodosIndexByProject(key) {
+  const todos = document.querySelectorAll(`[data-id="${key}"]`);
+  let counter = 0;
+  todos.forEach((item) => {
+    item.dataset.index = counter - 1;
+    counter += 1;
+  });
 }
 
 export function updateTodoFromMain(key, index, todo) {
