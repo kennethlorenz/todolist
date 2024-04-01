@@ -159,7 +159,7 @@ export function updateTodoFromMain(key, index, todo) {
     `[data-id="${key}"][data-index="${index}"]`
   );
   console.log(currentTodo);
-  const updatedTodoItem = todoItem(key, todo);
+  const updatedTodoItem = todoItem(key, todo, index);
   console.log(updatedTodoItem);
   currentTodo.parentNode.replaceChild(updatedTodoItem, currentTodo);
 }
