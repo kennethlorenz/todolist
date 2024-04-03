@@ -40,7 +40,7 @@ export default function mainContent(projectName) {
   mainDiv.appendChild(todosContainer);
 
   deleteProjectButton.addEventListener("click", () => {
-    const selectedProj = document.querySelector(".project.selected").dataset.id;
+    const selectedProj = document.querySelector(".project.selected").id;
     deleteProject(selectedProj);
   });
   return mainDiv;
@@ -48,13 +48,13 @@ export default function mainContent(projectName) {
 
 export function renderMainContent(project) {
   let body = document.querySelector("body");
-  body.replaceChild(mainContent(project.dataset.id), body.children[5]);
+  body.replaceChild(mainContent(project.id), body.children[5]);
   //mainDiv.replaceChildren(MainContent(project.dataset.id));
   renderAllTodos();
 }
 
 export function renderAllTodos() {
-  const key = document.querySelector(".project.selected").dataset.id;
+  const key = document.querySelector(".project.selected").id;
   if (getTodosFromSelectedProject(key) == null) {
     return;
   } else {
@@ -134,7 +134,7 @@ function hideEmptyProjectMessage() {
 }
 
 export function removeTodo(key, index) {
-  const selectedProj = document.querySelector(".project.selected").dataset.id;
+  const selectedProj = document.querySelector(".project.selected").id;
   const todoItem = document.querySelector(
     `[data-id="${key}"][data-index="${index}"]`
   );
