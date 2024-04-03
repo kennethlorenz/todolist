@@ -165,7 +165,7 @@ function add() {
   if (isFormValid() == false) {
     return;
   }
-  const key = document.querySelector(".project.selected").dataset.id;
+  const key = document.querySelector(".project.selected").id;
   const title = titleInput.value;
   const details = detailsTextArea.value;
   const dueDate = dateInput.value;
