@@ -3,7 +3,7 @@ import { deleteProject, setSelectedProject } from "./SidebarDOM";
 export default function project(projectTitle) {
   const project = document.createElement("li");
   project.classList.add("project");
-  project.dataset.id = projectTitle;
+  project.id = projectTitle;
 
   const projectLogoContainer = document.createElement("div");
   projectLogoContainer.classList.add("project-logo");
@@ -34,9 +34,9 @@ export default function project(projectTitle) {
     const elementCLicked = e.target.classList;
 
     if (!elementCLicked.contains("fa-x")) {
-      setSelectedProject(project);
+      setSelectedProject(project.id);
     } else {
-      deleteProject(project.dataset.id, projectName.textContent);
+      deleteProject(project.id, projectName.textContent);
     }
   });
 
