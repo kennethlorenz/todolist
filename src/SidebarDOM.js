@@ -6,9 +6,9 @@ import {
 import { renderMainContent, renderAllTodos } from "./MainContent";
 
 const projectsContainer = document.querySelector(".projects");
-const homeButton = document.querySelector("#home.project");
-const todayButton = document.getElementById("today");
-const weekButton = document.getElementById("week");
+const homeButton = document.getElementById("Home");
+const todayButton = document.getElementById("Today");
+const weekButton = document.getElementById("Week");
 
 export default function renderProjectsOnSidebar() {
   const projects = getProjects();
@@ -36,7 +36,7 @@ export function addProjectToSideBar(projectName) {
 export function highlightSelectedProject(project) {
   let sideBarItems = document.querySelectorAll(".project");
   sideBarItems.forEach((item) => {
-    if (item.dataset.id != project.dataset.id) {
+    if (item.id != project.id) {
       item.classList.remove("selected");
     } else {
       item.classList.add("selected");
@@ -45,7 +45,7 @@ export function highlightSelectedProject(project) {
 }
 
 export function deleteProject(projectId) {
-  const projectToDelete = document.querySelector(`[data-id='${projectId}']`);
+  const projectToDelete = document.getElementById(projectId);
   projectsContainer.removeChild(projectToDelete);
   deleteProjectFromLocalStorage(projectId);
   setSelectedProject(homeButton);
