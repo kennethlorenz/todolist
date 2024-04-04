@@ -34,7 +34,7 @@ export default function project(projectTitle) {
     const elementCLicked = e.target.classList;
 
     if (!elementCLicked.contains("fa-x")) {
-      setSelectedProject(project.id);
+      setSelectedProject(project);
     } else {
       deleteProject(project.id, projectName.textContent);
     }
