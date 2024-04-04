@@ -63,36 +63,14 @@ export function renderAllTodos() {
       hideEmptyProjectMessage();
       let projects = getProjects();
       projects.sort().forEach((project) => {
-        let counter = 0;
-        project.todos.forEach((item) => {
-          const todo = new Todo(
-            item.title,
-            item.details,
-            item.dueDate,
-            item.priority,
-            item.checked
-          );
-          addTodoToMain(project.title, todo, counter);
-          counter += 1;
-        });
+        renderTodos(project.title, project.todos);
       });
     }
     //if today aand week is selected, hide empty project message and render todos respectively.
     else if (key == "Today" || key == "Week") {
       let projectTodos = getTodosFromSelectedProject(key);
       hideEmptyProjectMessage();
-      let counter = 0;
-      projectTodos.forEach((item) => {
-        const todo = new Todo(
-          item.title,
-          item.details,
-          item.dueDate,
-          item.priority,
-          item.checked
-        );
-        addTodoToMain(key, todo, counter);
-        counter += 1;
-      });
+      renderTodos(key, projectTodos);
     }
     //if the selected item is not Home, Render all the todos on that project.
     else {
@@ -100,20 +78,24 @@ export function renderAllTodos() {
       if (projectTodos.length == 0) {
         showEmptyProjectMessage();
       }
-      let counter = 0;
-      projectTodos.forEach((item) => {
-        const todo = new Todo(
-          item.title,
-          item.details,
-          item.dueDate,
-          item.priority,
-          item.checked
-        );
-        addTodoToMain(key, todo, counter);
-        counter += 1;
-      });
+      renderTodos(key, projectTodos);
     }
   }
+}
+
+function renderTodos(key, project) {
+  let counter = 0;
+  project.forEach((item) => {
+    const todo = new Todo(
+      item.title,
+      item.details,
+      item.dueDate,
+      item.priority,
+      item.checked
+    );
+    addTodoToMain(key, todo, counter);
+    counter += 1;
+  });
 }
 
 export function addTodoToMain(key, todo, counter) {
@@ -134,7 +116,6 @@ function hideEmptyProjectMessage() {
 }
 
 export function removeTodo(key, index) {
-  const selectedProj = document.querySelector(".project.selected").id;
   const todoItem = document.querySelector(
     `[data-id="${key}"][data-index="${index}"]`
   );
