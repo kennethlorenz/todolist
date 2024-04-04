@@ -140,16 +140,13 @@ export function removeTodo(key, index) {
   );
   todoItem.remove();
   updateTodosIndexByProject(key);
-  if (getTodosFromSelectedProject(key) == 0 && selectedProj != "Home") {
-    showEmptyProjectMessage();
-  }
 }
 
 function updateTodosIndexByProject(key) {
   const todos = document.querySelectorAll(`[data-id="${key}"]`);
   let counter = 0;
   todos.forEach((item) => {
-    item.dataset.index = counter - 1;
+    item.dataset.index = counter;
     counter += 1;
   });
 }
